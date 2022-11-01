@@ -13,7 +13,8 @@
     - Must be mapped to /details/{unique identifier} or /details?identifier={unique identifier}
       where unique identifier uniquely identifies the item being displayed
 **/
-import pokemon from "../MockData/MockPokemonDetailsData.json"
+
+import pokemon from "../MockData/MockPokemonDetailsData.json";
 import {Link} from "react-router-dom";
 
 const Details () => {
