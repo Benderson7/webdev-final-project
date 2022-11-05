@@ -15,32 +15,31 @@
 **/
 
 import pokemon from "../MockData/MockPokemonDetailsData.json";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
-const Details () => {
+function Details() {
+    const { id } = useParams();
     return (
         <div className="list-group">
                         <div className="list-group-item">
-                            <img src={pokemon.sprites.front_default}/img>
+                            <img src={pokemon.sprites.front_default} />
                         </div>
                         <div className="list-group-item">
                             {pokemon.id}
                         </div>
                         <div className="list-group-item">
-                            {pokemon.types.type.name}
+                            Type: {pokemon.types[0].type.name}
                         </div>
                         <div className="list-group-item">
-                            {pokemon.types.type.name}
+                            Abilities: {pokemon.abilities[0].ability.name}
+                            <br/>
+                            Hidden Ability: {pokemon.abilities[1].ability.name}
                         </div>
                         <div className="list-group-item">
-                            {pokemon.abilities[0].name}
-                            {pokemon.abilities[2].name}
+                            Pokemon Weight: {pokemon.weight}
                         </div>
                         <div className="list-group-item">
-                            {pokemon.weight}
-                        </div>
-                        <div className="list-group-item">
-                            {pokemon.height}
+                            Pokemon Height: {pokemon.height}
                         </div>
 
                 </div>

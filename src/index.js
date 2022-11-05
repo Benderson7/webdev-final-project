@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Search from "./search";
 import Layout from "./layout";
+import Details from "./details";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -18,6 +19,7 @@ root.render(
               <Route path="/" element={<Layout/>}>
                   <Route index element={<App/>}/>
                   <Route path="/search" element={<Search/>}/>
+                  <Route path="/details/:id" element={<Details/>}/>
                   <Route path="/*" element={<App/>}/>
               </Route>
           </Routes>
