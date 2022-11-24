@@ -5,29 +5,35 @@ import Search from "./search";
 import Details from "./details";
 import React from "react";
 import Home from "./home";
+import Login from "./login"
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import pokemonReducer from "./reducers/pokemon-reducer";
 import monReducer from "./reducers/mon-reducer";
-const store = configureStore({reducer: {pokemon: pokemonReducer, mon: monReducer}});
+import Register from "./register";
+import usersReducer from "./reducers/users-reducer";
+import Profile from "./profile";
+const store = configureStore({reducer: {pokemon: pokemonReducer, mon: monReducer, users: usersReducer}});
 
 function App() {
   return (
       <BrowserRouter>
           <Provider store={store}>
               <div className="container">
+                  <Layout/>
                   <Routes>
-                      <Route path="/"
-                             element={<Layout/>}>
-                          <Route index
-                                 element={<Home/>}/>
-                          <Route path="/pokemon"
-                                 element={<Search/>}/>
-                          <Route path="/pokemon/:name"
-                                 element={<Details/>}/>
-                          <Route path="/*"
-                                 element={<App/>}/>
-                      </Route>
+                      <Route index
+                             element={<Home/>}/>
+                      <Route path="/login"
+                             element={<Login/>}/>
+                      <Route path="/register"
+                             element={<Register/>}/>
+                      <Route path="/pokemon"
+                             element={<Search/>}/>
+                      <Route path="/pokemon/:name"
+                             element={<Details/>}/>
+                      <Route path="/profile"
+                             element={<Profile/>}/>
                   </Routes>
               </div>
           </Provider>

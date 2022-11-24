@@ -9,6 +9,12 @@ function Layout() {
                     <Link to="/">Home</Link>
                 </div>
                 <div className="list-group-item">
+                    <Link to="/login">Login</Link>
+                </div>
+                <div className="list-group-item">
+                    <Link to="/register">Register</Link>
+                </div>
+                <div className="list-group-item">
                     <Link to="/pokemon">Search</Link>
                 </div>
                 <div className="list-group-item">

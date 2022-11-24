@@ -1,6 +1,15 @@
+import {useSelector} from "react-redux";
+
 function Home() {
+
+    const {currentUser} = useSelector((state) => state.users)
     return (
-        <p>Hello :)</p>
+        <>
+            {
+                currentUser &&
+                <h1>Hello {currentUser.username} :^)</h1>
+            }
+        </>
     );
 }
 
