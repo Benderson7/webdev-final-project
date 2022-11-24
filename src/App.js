@@ -1,24 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Layout from "./layout";
+import Search from "./search";
+import Details from "./details";
+import React from "react";
+import Home from "./home";
+import {Provider} from "react-redux";
+import {configureStore} from "@reduxjs/toolkit";
+import pokemonReducer from "./reducers/pokemon-reducer";
+import monReducer from "./reducers/mon-reducer";
+const store = configureStore({reducer: {pokemon: pokemonReducer, mon: monReducer}});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+          <Provider store={store}>
+              <div className="container">
+                  <Routes>
+                      <Route path="/"
+                             element={<Layout/>}>
+                          <Route index
+                                 element={<Home/>}/>
+                          <Route path="/pokemon"
+                                 element={<Search/>}/>
+                          <Route path="/pokemon/:name"
+                                 element={<Details/>}/>
+                          <Route path="/*"
+                                 element={<App/>}/>
+                      </Route>
+                  </Routes>
+              </div>
+          </Provider>
+      </BrowserRouter>
   );
 }
 

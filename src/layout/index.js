@@ -6,10 +6,10 @@ function Layout() {
         <div>
             <div className="list-group list-group-horizontal">
                 <div className="list-group-item">
-                    <Link to="/home">Home</Link>
+                    <Link to="/">Home</Link>
                 </div>
                 <div className="list-group-item">
-                    <Link to="/search">Search</Link>
+                    <Link to="/pokemon">Search</Link>
                 </div>
                 <div className="list-group-item">
                     <Link to="/profile">Profile</Link>
