@@ -13,11 +13,13 @@ const Profile = () => {
             <h1>Profile</h1>
             {
                 currentUser &&
-                <h2>Welcome new user: {currentUser.username}</h2>
+                <>
+                    <h2>Welcome new user: {currentUser.username}</h2>
+                    <button onClick={handleLogoutBtn}>
+                        Logout
+                    </button>
+                </>
             }
-            <button onClick={handleLogoutBtn}>
-                Logout
-            </button>
         </>
     )
 }

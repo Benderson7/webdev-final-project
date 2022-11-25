@@ -1,7 +1,13 @@
 import './index.css';
 import {Link, Outlet} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {profileThunk} from "../services/users-thunks";
 
 function Layout() {
+    const dispatch = useDispatch()
+    // eslint-disable-next-line
+    useEffect(() => {dispatch(profileThunk())}, [])
     return (
         <div>
             <div className="list-group list-group-horizontal">
