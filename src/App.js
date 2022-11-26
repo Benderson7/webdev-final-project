@@ -13,6 +13,7 @@ import monReducer from "./reducers/mon-reducer";
 import Register from "./register";
 import usersReducer from "./reducers/users-reducer";
 import Profile from "./profile";
+import EditProfile from "./profile/EditProfile";
 const store = configureStore({reducer: {pokemon: pokemonReducer, mon: monReducer, users: usersReducer}});
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
                              element={<Details/>}/>
                       <Route path="/profile"
                              element={<Profile/>}/>
+                      <Route path="/edit-profile"
+                             element={<EditProfile/>}/>
                   </Routes>
               </div>
           </Provider>

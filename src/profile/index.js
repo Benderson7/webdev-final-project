@@ -1,11 +1,16 @@
 import {logoutThunk} from "../services/users-thunks";
 import {useDispatch, useSelector} from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
+    }
+    const handleEditBtn = () => {
+        navigate('/edit-profile');
     }
 
     return(
@@ -18,8 +23,20 @@ const Profile = () => {
                     <button onClick={handleLogoutBtn}>
                         Logout
                     </button>
+                    <button onClick={handleEditBtn}>
+                        Edit Profile
+                    </button>
+                    <br/>
+                    {currentUser.firstName}
+                    <br/>
+                    {currentUser.lastName}
+                    <br/>
+                    {currentUser.email}
+                    <br/>
+                    {currentUser.username}
                 </>
             }
+
         </>
     )
 }
