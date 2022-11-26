@@ -1,20 +1,15 @@
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {registerThunk} from "../services/users-thunks";
 
 const Register = () => {
-    const {currentUser} = useSelector((state) => state.users)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [role, setRole] = useState('USER')
     const dispatch = useDispatch()
     const handleRegisterBtn = () => {
-        dispatch(registerThunk({username, password}))
-    }
-
-
-    if(currentUser) {
-        return (<Navigate to={'/'}/>)
+        dispatch(registerThunk({username, password, role}))
     }
 
     return(
@@ -29,6 +24,10 @@ const Register = () => {
                    className="form-control"
                    placeholder="password"
                    value={password}/>
+            <input
+                type={"checkbox"}
+                onClick={(e) => {e.target.checked? setRole("ADMIN"): setRole("USER")}}
+            /> Admin Account?
             <button
                 className="btn btn-primary w-100"
                 onClick={handleRegisterBtn}>

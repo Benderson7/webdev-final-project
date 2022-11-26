@@ -14,6 +14,9 @@ import Register from "./register";
 import usersReducer from "./reducers/users-reducer";
 import Profile from "./profile";
 import EditProfile from "./profile/EditProfile";
+import CurrentUser from "./profile/current-user";
+import LoggedOutRoute from "./profile/logged-out-route";
+import LoggedInRoute from "./profile/logged-in-route";
 const store = configureStore({reducer: {pokemon: pokemonReducer, mon: monReducer, users: usersReducer}});
 
 function App() {
@@ -21,23 +24,23 @@ function App() {
       <BrowserRouter>
           <Provider store={store}>
               <div className="container">
-                  <Layout/>
-                  <Routes>
-                      <Route index
-                             element={<Home/>}/>
-                      <Route path="/login"
-                             element={<Login/>}/>
-                      <Route path="/register"
-                             element={<Register/>}/>
-                      <Route path="/pokemon"
-                             element={<Search/>}/>
-                      <Route path="/pokemon/:name"
-                             element={<Details/>}/>
-                      <Route path="/profile"
-                             element={<Profile/>}/>
-                      <Route path="/edit-profile"
-                             element={<EditProfile/>}/>
-                  </Routes>
+                  <CurrentUser>
+                      <Layout/>
+                      <Routes>
+                          <Route index element={<Home/>}/>
+                          <Route path="/login" element={<LoggedInRoute><Login/></LoggedInRoute>}/>
+                          <Route path="/register" element={<LoggedInRoute><Register/></LoggedInRoute>}/>
+                          <Route path="/pokemon" element={<Search/>}/>
+                          <Route path="/pokemon/:name" element={<Details/>}/>
+                          <Route path="/profile" element={
+                              <LoggedOutRoute><Profile/>
+                                  </LoggedOutRoute>}/>
+                          <Route path="/edit-profile" element={
+                              <LoggedOutRoute>
+                                  <EditProfile/>
+                              </LoggedOutRoute>}/>
+                      </Routes>
+                  </CurrentUser>
               </div>
           </Provider>
       </BrowserRouter>

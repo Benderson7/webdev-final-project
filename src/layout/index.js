@@ -1,29 +1,25 @@
 import './index.css';
 import {Link, Outlet} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {useEffect} from "react";
-import {profileThunk} from "../services/users-thunks";
+import {useSelector} from "react-redux";
 
 function Layout() {
-    const dispatch = useDispatch()
-    // eslint-disable-next-line
-    useEffect(() => {dispatch(profileThunk())}, [])
+    const {currentUser} = useSelector((state) => state.users)
     return (
         <div>
             <div className="list-group list-group-horizontal">
                 <div className="list-group-item">
                     <Link to="/">Home</Link>
                 </div>
-                <div className="list-group-item">
+                <div className={`list-group-item ${currentUser ? 'd-none' : ''}`}>
                     <Link to="/login">Login</Link>
                 </div>
-                <div className="list-group-item">
+                <div className={`list-group-item ${currentUser ? 'd-none' : ''}`}>
                     <Link to="/register">Register</Link>
                 </div>
                 <div className="list-group-item">
                     <Link to="/pokemon">Search</Link>
                 </div>
-                <div className="list-group-item">
+                <div className={`list-group-item ${currentUser ? '' : 'd-none'}`}>
                     <Link to="/profile">Profile</Link>
                 </div>
             </div>

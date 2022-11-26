@@ -1,10 +1,9 @@
 import {useState} from "react";
 import {loginThunk} from "../services/users-thunks";
-import {Link, Navigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 const Login = () => {
-    const {currentUser} = useSelector((state) => state.users)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
@@ -14,10 +13,6 @@ const Login = () => {
         } catch (e) {
             // Do something here to display in error in the browser
         }
-    }
-
-    if (currentUser) {
-        return (<Navigate to={'/'}/>)
     }
 
     return(

@@ -18,7 +18,7 @@ const EditProfile = () => {
 
     return(
         <>
-            <label for={"usernameInput"} >Username: </label>
+            <label htmlFor={"usernameInput"} >Username: </label>
             <input
                 id={"usernameInput"}
                 onChange={(e) => setUpdateUser({...updateUser, username: e.target.value})}
