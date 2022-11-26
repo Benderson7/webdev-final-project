@@ -17,6 +17,7 @@ import EditProfile from "./profile/EditProfile";
 import CurrentUser from "./profile/current-user";
 import LoggedOutRoute from "./profile/logged-out-route";
 import LoggedInRoute from "./profile/logged-in-route";
+import ViewProfile from "./profile/view-profile";
 const store = configureStore({reducer: {pokemon: pokemonReducer, mon: monReducer, users: usersReducer}});
 
 function App() {
@@ -32,13 +33,9 @@ function App() {
                           <Route path="/register" element={<LoggedInRoute><Register/></LoggedInRoute>}/>
                           <Route path="/pokemon" element={<Search/>}/>
                           <Route path="/pokemon/:name" element={<Details/>}/>
-                          <Route path="/profile" element={
-                              <LoggedOutRoute><Profile/>
-                                  </LoggedOutRoute>}/>
-                          <Route path="/edit-profile" element={
-                              <LoggedOutRoute>
-                                  <EditProfile/>
-                              </LoggedOutRoute>}/>
+                          <Route path="/profile" element={<LoggedOutRoute><Profile/></LoggedOutRoute>}/>
+                          <Route path="/edit-profile" element={<LoggedOutRoute><EditProfile/></LoggedOutRoute>}/>
+                          <Route path={"/profile/:uid"} element={<ViewProfile/>}/>
                       </Routes>
                   </CurrentUser>
               </div>
