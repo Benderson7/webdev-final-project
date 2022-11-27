@@ -18,7 +18,12 @@ import CurrentUser from "./profile/current-user";
 import LoggedOutRoute from "./profile/logged-out-route";
 import LoggedInRoute from "./profile/logged-in-route";
 import ViewProfile from "./profile/view-profile";
-const store = configureStore({reducer: {pokemon: pokemonReducer, mon: monReducer, users: usersReducer}});
+import teamsReducer from "./reducers/teams-reducer";
+const store = configureStore({reducer: {
+        pokemon: pokemonReducer,
+        mon: monReducer,
+        users: usersReducer,
+        team: teamsReducer}});
 
 function App() {
   return (
