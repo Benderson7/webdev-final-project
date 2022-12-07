@@ -12,6 +12,7 @@ const EditProfile = () => {
     const navigation = useNavigate()
     const handleUpdateBtn = () => {
         dispatch(updateThunk(updateUser))
+        setUpdateUser({...updateUser, password: ''})
         navigation("/profile")
     }
     const handleBackBtn = () => {
