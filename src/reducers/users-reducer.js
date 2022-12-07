@@ -3,7 +3,7 @@ import {
     getProfileThunk,
     loginThunk,
     logoutThunk,
-    profileThunk,
+    getCurrentUserThunk,
     registerThunk,
     updateThunk
 } from "../services/users-thunks";
@@ -24,7 +24,7 @@ const usersReducer = createSlice({
         [logoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null
         },
-        [profileThunk.fulfilled]: (state, action) => {
+        [getCurrentUserThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
         },
         [getProfileThunk.fulfilled]: (state, action) => {

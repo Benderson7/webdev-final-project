@@ -1,35 +1,48 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {getProfileThunk} from "../services/users-thunks";
-import {getTeamByUserIDThunk} from "../services/teams-thunks";
+import {getTeamByUserIDThunk, likeTeamThunk, postTeamCommentThunk} from "../services/teams-thunks";
+import Comments from "../team/comments";
+import TeamStat from "../team/team-stat";
+import ProfileInfo from "./profile-info";
 
 const ViewProfile = () => {
     const {uid} = useParams();
-    const {profile} = useSelector((state) => state.users)
     const {team} = useSelector((state) => state.team)
-    const dispatch = useDispatch()
-    // eslint-disable-next-line
-    useEffect(() => {dispatch(getProfileThunk(uid))}, [])
-    // eslint-disable-next-line
-    useEffect(() => {dispatch(getTeamByUserIDThunk(uid))}, [])
-    const pokemons = []
-    if (team.pokemons) {
-        for (let i = 0; i < team.pokemons.length; i++) {
-            pokemons.push(<li>{team.pokemons[i]}</li>);
-        }
+    const [post, setPost] = useState("");
+    const dispatch = useDispatch();
+
+    useEffect(() => {dispatch(getTeamByUserIDThunk(uid))}, [uid])
+
+    const handlePostComment = (uid, tid, comment) => {
+        dispatch(postTeamCommentThunk({user: uid, team: tid, comment: comment}))
+        setPost('')
     }
+
+    const handleLikeBtn = (uid, tid) => {
+        dispatch(likeTeamThunk({uid: uid, tid: tid}))
+    }
+
     return(
         <>
-            <h1>You are currently viewing: {profile.username}</h1>
-            <ul>
-                <li>{profile.firstName}</li>
-                <li>{profile.lastName}</li>
-                <li>{profile.email}</li>
-                <li>{profile.password}</li>
-            </ul>
-            <h2>This is your team(currently dummy pokemon id's as placeholders)</h2>
-            {pokemons}
+            <ProfileInfo uid={uid}/>
+            <h2>This is your team(ID's)</h2>
+            {team.pokemons !== undefined && team.pokemons.map((pokemon) => (<li>{pokemon}</li>))}
+            <h3>Comments</h3>
+            <textarea
+                onChange={(e) => setPost(e.target.value)}
+                value={post}
+                placeholder={"Post your comment"}
+            />
+            <br/>
+            <button onClick={() => handlePostComment(uid, team._id, post)}>
+                Post Comment
+            </button>
+            {team._id !== undefined && <Comments tid={team._id}/>}
+            <h4>stats</h4>
+            {team._id !== undefined && <TeamStat tid={team._id}/>}
+            <button onClick={() => handleLikeBtn(uid, team._id)}>Like</button>
+            <button>Dislike</button>
         </>
     )
 }

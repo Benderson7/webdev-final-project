@@ -22,8 +22,8 @@ export const logout = async () => {
     return response.data
 }
 
-export const profile = async () => {
-    const response = await api.post(`${BASE_API_URL}/profile`)
+export const getCurrentUser = async () => {
+    const response = await api.post(`${BASE_API_URL}/users/current`)
     return response.data
 }
 
