@@ -1,18 +1,22 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Navigate, useParams} from "react-router-dom";
 import {getTeamByUserIDThunk, likeTeamThunk, postTeamCommentThunk} from "../services/teams-thunks";
 import Comments from "../team/comments";
 import TeamStat from "../team/team-stat";
 import ProfileInfo from "./profile-info";
+import {getCurrentUserThunk} from "../services/users-thunks";
 
 const ViewProfile = () => {
+
+    const {currentUser} = useSelector((state) => state.users)
     const {uid} = useParams();
     const {team} = useSelector((state) => state.team)
     const [post, setPost] = useState("");
     const dispatch = useDispatch();
 
     useEffect(() => {dispatch(getTeamByUserIDThunk(uid))}, [uid])
+    useEffect(() => {dispatch(getCurrentUserThunk)}, [])
 
     const handlePostComment = (uid, tid, comment) => {
         dispatch(postTeamCommentThunk({user: uid, team: tid, comment: comment}))
@@ -22,6 +26,12 @@ const ViewProfile = () => {
     const handleLikeBtn = (uid, tid) => {
         dispatch(likeTeamThunk({uid: uid, tid: tid}))
     }
+
+
+    if (currentUser._id !== undefined && currentUser._id === uid) {
+        return (<Navigate to={'/profile'}/>)
+    }
+
 
     return(
         <>

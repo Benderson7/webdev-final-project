@@ -10,6 +10,7 @@ const Comments = ({tid}) => {
     useEffect(() => {dispatch(getTeamCommentsByTeamIDThunk(tid))}, [tid])
     return (
         <>
+            <h4>Comments on Team</h4>
             {comments.map((comment) => <Comment comment={comment}/>)}
         </>
     )

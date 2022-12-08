@@ -5,14 +5,16 @@ import {
     logoutThunk,
     getCurrentUserThunk,
     registerThunk,
-    updateThunk
+    updateThunk,
+    getCommentsByUserThunk
 } from "../services/users-thunks";
 
 const usersReducer = createSlice({
     name: 'users',
     initialState: {
         currentUser: {},
-        profile: {}
+        profile: {},
+        comments: []
     },
     extraReducers: {
         [registerThunk.fulfilled]: (state, action) => {
@@ -32,6 +34,9 @@ const usersReducer = createSlice({
         },
         [updateThunk.fulfilled]: (state, {payload}) => {
             state.currentUser = payload;
+        },
+        [getCommentsByUserThunk.fulfilled]: (state, action) => {
+            state.comments = action.payload
         }
     }
 })

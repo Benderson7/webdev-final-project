@@ -7,17 +7,13 @@ const ProfileInfo = ({uid}) => {
     const dispatch = useDispatch()
     useEffect(() => {dispatch(getProfileThunk(uid))}, [uid])
 
-    console.log(uid)
     return (
         <>
-            <h1>You are currently viewing: {profile.username}</h1>
-            <ul>
-                <li>{profile.firstName}</li>
-                <li>{profile.lastName}</li>
-                <li>{profile.email}</li>
-                <li>{profile.password}</li>
-                <li>{profile.username}</li>
-            </ul>
+            <h3>Personal Info:</h3>
+            <div>Username: {profile.username}</div>
+            <div>First Name: {profile.firstName ? profile.firstName : "Not set"}</div>
+            <div>Last Name: {profile.lastName ? profile.lastName : "Not set"}</div>
+            <div>Email: {profile.email ? profile.email : "Not set"}</div>
         </>
     )
 }

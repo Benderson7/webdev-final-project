@@ -37,3 +37,8 @@ export const updateUser = async (user) => {
      await api.put(`${BASE_API_URL}/users/${user._id}`, user);
      return user;
 }
+
+export const getCommentsByUser = async (uid) => {
+    const response = await api.get(`${BASE_API_URL}/users/${uid}/comments`)
+    return response.data
+}
