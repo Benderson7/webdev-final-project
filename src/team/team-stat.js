@@ -7,6 +7,7 @@ import {
     likeTeamThunk,
     removeStatusThunk
 } from "../services/teams-thunks";
+import {useNavigate} from "react-router-dom";
 
 const TeamStat = ({tid}) => {
     const {currentUser} = useSelector((state) => state.users)
@@ -15,7 +16,16 @@ const TeamStat = ({tid}) => {
     useEffect(() => {dispatch(getTeamStatsThunk(tid))}, [tid])
     useEffect(() => {dispatch(getUserLikedTeamStatusThunk({tid: tid}))}, [tid])
 
+    const navigate = useNavigate()
+
+    const handleNotLoggedIn = () => {
+        if (currentUser._id === undefined) {
+            navigate('/login')
+        }
+    }
+
     const handleLikeBtn = () => {
+        handleNotLoggedIn()
         if (liked) {
             dispatch(removeStatusThunk({tid: tid, type: 'like'}))
         }
@@ -25,6 +35,7 @@ const TeamStat = ({tid}) => {
     }
 
     const handleDislikeBtn = () => {
+        handleNotLoggedIn()
         if (disliked) {
             dispatch(removeStatusThunk({tid: tid, type: 'dislike'}))
         }
