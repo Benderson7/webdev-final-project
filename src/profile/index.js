@@ -41,6 +41,4 @@ const Profile = () => {
 export default Profile
 
 
-// Show Team
 // Show liked/dislike
-// Show comments that you made

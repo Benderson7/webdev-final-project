@@ -11,7 +11,6 @@ export const getTeamByUserID = async (uid) => {
     return team
 }
 
-
 export const getTeamCommentsByTeamID = async (tid) => {
     const response = await api.get(`${BASE_API_URL}/teams/${tid}/comments`)
     return response.data
@@ -23,13 +22,25 @@ export const getTeamStats = async (tid) => {
 
 export const postTeamComment = async (newComment) => {
     const response = await api.post(`${BASE_API_URL}/comment`, newComment)
-    console.log(response.data)
     return response.data
 }
 
-export const likeTeam = async (uid, tid) => {
-    console.log(uid)
-    console.log(tid)
-    const response = await api.post(`${BASE_API_URL}/users/${uid}/likes/${tid}`)
+export const likeTeam = async (tid) => {
+    const response = await api.post(`${BASE_API_URL}/users/likes/${tid}`)
+    return response.data
+}
+
+export const dislikeTeam = async (tid) => {
+    const response = await api.post(`${BASE_API_URL}/users/dislikes/${tid}`)
+    return response.data
+}
+
+export const removeStatus = async (uid, tid, type) => {
+    const response = await api.delete(`${BASE_API_URL}/users/teams/${tid}/stats/${type}`)
+    return response.data
+}
+
+export const getUserLikedTeamStatus = async (tid) => {
+    const response = await api.get(`${BASE_API_URL}/users/teams/${tid}/status`)
     return response.data
 }

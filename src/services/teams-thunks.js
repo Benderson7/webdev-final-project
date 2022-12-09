@@ -1,5 +1,12 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getTeamByUserID, getTeamCommentsByTeamID, getTeamStats, postTeamComment, likeTeam} from "./teams-services";
+import {
+    getTeamByUserID,
+    getTeamCommentsByTeamID,
+    getTeamStats,
+    postTeamComment,
+    likeTeam,
+    getUserLikedTeamStatus, removeStatus, dislikeTeam
+} from "./teams-services";
 
 export const getTeamByUserIDThunk = createAsyncThunk(
     'teamByUserID',
@@ -31,5 +38,21 @@ export const postTeamCommentThunk = createAsyncThunk(
 
 export const likeTeamThunk = createAsyncThunk(
     'likeTeam',
-    async (userLikesTeam) => await likeTeam(userLikesTeam.uid, userLikesTeam.tid)
+    async (tid) => await likeTeam(tid)
+)
+
+export const dislikeTeamThunk = createAsyncThunk(
+    'dislikeTeam',
+    async (tid) => await dislikeTeam(tid)
+)
+
+export const removeStatusThunk = createAsyncThunk(
+    'removeStatus',
+    async (remove) => await removeStatus(remove.uid, remove.tid, remove.type)
+)
+
+
+export const getUserLikedTeamStatusThunk = createAsyncThunk(
+    'getUserLikedTeamStatus',
+    async (status) => await getUserLikedTeamStatus(status.tid)
 )
