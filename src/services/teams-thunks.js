@@ -5,7 +5,7 @@ import {
     getTeamStats,
     postTeamComment,
     likeTeam,
-    getUserLikedTeamStatus, removeStatus, dislikeTeam, getUserLikedTeams, getUserDislikedTeams
+    getUserLikedTeamStatus, removeStatus, dislikeTeam, getUserLikedTeams, getUserDislikedTeams, deleteCommentOnTeam
 } from "./teams-services";
 
 export const getTeamByUserIDThunk = createAsyncThunk(
@@ -66,5 +66,10 @@ export const getUserLikedTeamsThunk = createAsyncThunk(
 export const getUserDislikedTeamsThunk = createAsyncThunk(
     'getUserDislikedTeams',
     async (uid) => await getUserDislikedTeams(uid)
+)
+
+export const deleteCommentOnTeamThunk = createAsyncThunk(
+    'deleteCommentOnTeam',
+    async (cid) => await deleteCommentOnTeam(cid)
 )
 

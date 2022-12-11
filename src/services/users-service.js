@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {all} from "axios";
 
 const BASE_API_URL = 'http://localhost:4000'
 
@@ -41,4 +41,14 @@ export const updateUser = async (user) => {
 export const getCommentsByUser = async (uid) => {
     const response = await api.get(`${BASE_API_URL}/users/${uid}/comments`)
     return response.data
+}
+
+export const getAllUsers = async () => {
+    const allUsers = await api.get(`${BASE_API_URL}/users`)
+    return allUsers.data
+}
+
+export const deleteUser = async (uid) => {
+    const status = await api.delete(`${BASE_API_URL}/users/${uid}`)
+    return uid
 }

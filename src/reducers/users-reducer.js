@@ -6,7 +6,7 @@ import {
     getCurrentUserThunk,
     registerThunk,
     updateThunk,
-    getCommentsByUserThunk
+    getCommentsByUserThunk, getAllUsersThunk, deleteUserThunk
 } from "../services/users-thunks";
 import {getUserDislikedTeamsThunk, getUserLikedTeamsThunk} from "../services/teams-thunks";
 
@@ -17,7 +17,8 @@ const usersReducer = createSlice({
         profile: {},
         comments: [],
         likedTeams: [],
-        dislikedTeams: []
+        dislikedTeams: [],
+        allUsers: []
     },
     extraReducers: {
         [registerThunk.fulfilled]: (state, action) => {
@@ -46,6 +47,12 @@ const usersReducer = createSlice({
         },
         [getUserDislikedTeamsThunk.fulfilled]: (state, action) => {
             state.dislikedTeams = action.payload
+        },
+        [getAllUsersThunk.fulfilled]: (state, action) => {
+            state.allUsers = action.payload
+        },
+        [deleteUserThunk.fulfilled]: (state, action) => {
+            state.allUsers = state.allUsers.filter(user => user._id !== action.payload)
         }
     }
 })

@@ -1,16 +1,21 @@
 import {useSelector} from "react-redux";
+import AllUsers from "./all-users";
 
 function Home() {
 
     const {currentUser} = useSelector((state) => state.users)
-    return (
-        <>
-            {
-                currentUser &&
-                <h1>Hello {currentUser.username} :^)</h1>
-            }
-        </>
-    );
+
+    if (currentUser.role === 'ADMIN') {
+        return (
+            <>
+                <h2>USERS</h2>
+                <AllUsers/>
+            </>
+        );
+    }
+    else {
+        return (<>Regular User</>);
+    }
 }
 
 export default Home;

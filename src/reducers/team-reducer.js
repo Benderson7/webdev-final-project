@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
+    deleteCommentOnTeamThunk,
     dislikeTeamThunk,
     getTeamByUserIDThunk,
     getTeamCommentsByTeamIDThunk,
@@ -75,6 +76,9 @@ const teamReducer = createSlice({
             else {
                 state.stats.dislikes -= 1
             }
+        },
+        [deleteCommentOnTeamThunk.fulfilled]: (state, action) => {
+            state.comments = state.comments.filter(comment => comment._id !== action.payload)
         }
     }
 })

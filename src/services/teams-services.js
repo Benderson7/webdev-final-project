@@ -15,6 +15,12 @@ export const getTeamCommentsByTeamID = async (tid) => {
     const response = await api.get(`${BASE_API_URL}/teams/${tid}/comments`)
     return response.data
 }
+
+export const deleteCommentOnTeam = async (cid) => {
+    const response = await api.delete(`${BASE_API_URL}/comments/${cid}`)
+    return cid
+}
+
 export const getTeamStats = async (tid) => {
     const response = await api.get(`${BASE_API_URL}/teams/${tid}/stats`)
     return response.data
