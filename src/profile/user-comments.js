@@ -10,7 +10,7 @@ const UserComments = ({uid}) => {
 
     return (
         <>
-            <h2>Your Comments</h2>
+            <h2>User's comments</h2>
             {comments.map((comment) => <li>{comment.comment} on <Link to={comment.team.user._id}>{comment.team.user.username}'s team</Link></li>)}
         </>
     )

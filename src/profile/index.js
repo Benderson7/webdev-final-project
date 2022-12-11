@@ -1,10 +1,11 @@
-import {logoutThunk, getCurrentUserThunk} from "../services/users-thunks";
+import {logoutThunk} from "../services/users-thunks";
 import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ProfileInfo from "./profile-info";
-import {useEffect} from "react";
 import Team from "../team/team";
 import UserComments from "./user-comments";
+import LikedTeams from "./liked-team";
+import DislikedTeams from "./disliked-teams";
 
 const Profile = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -16,7 +17,6 @@ const Profile = () => {
     const handleEditBtn = () => {
         navigate('/edit-profile');
     }
-    useEffect(() => {dispatch(getCurrentUserThunk())}, [])
 
     return(
         <>
@@ -31,6 +31,8 @@ const Profile = () => {
                     <ProfileInfo uid={currentUser._id}/>
                     <Team uid={currentUser._id}/>
                     <UserComments uid={currentUser._id}/>
+                    <LikedTeams uid={currentUser._id}/>
+                    <DislikedTeams uid={currentUser._id}/>
                 </>
             }
 
@@ -41,4 +43,4 @@ const Profile = () => {
 export default Profile
 
 
-// Show liked/dislike
+// Show liked/dislike teams

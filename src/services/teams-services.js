@@ -44,3 +44,14 @@ export const getUserLikedTeamStatus = async (tid) => {
     const response = await api.get(`${BASE_API_URL}/users/teams/${tid}/status`)
     return response.data
 }
+
+export const getUserLikedTeams = async (uid) => {
+    const likedTeams = await api.get(`${BASE_API_URL}/users/${uid}/teams/liked`)
+    return likedTeams.data
+}
+
+
+export const getUserDislikedTeams = async (uid) => {
+    const dislikedTeams = await api.get(`${BASE_API_URL}/users/${uid}/teams/disliked`)
+    return dislikedTeams.data
+}

@@ -47,7 +47,7 @@ const TeamStat = ({tid}) => {
 
     return (
         <>
-            {stats.likes !== undefined &&
+            {stats &&
                 <div>
                     {stats.likes}
                     <i  onClick={handleLikeBtn}

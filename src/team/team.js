@@ -12,9 +12,9 @@ const Team = ({uid}) => {
     return (
         <>
             <h3>Team Composition(ids):</h3>
-            {team.pokemons !== undefined && team.pokemons.map((pokemon) => (<li>{pokemon}</li>))}
-            {team._id !== undefined && <Comments tid={team._id}/>}
-            {team._id !== undefined && <TeamStat tid={team._id}/>}
+            {team && team.pokemons.map((pokemon) => (<li>{pokemon}</li>))}
+            {team && <Comments tid={team._id}/>}
+            {team && <TeamStat tid={team._id}/>}
         </>
     )
 }

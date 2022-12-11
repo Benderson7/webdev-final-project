@@ -8,13 +8,16 @@ import {
     updateThunk,
     getCommentsByUserThunk
 } from "../services/users-thunks";
+import {getUserDislikedTeamsThunk, getUserLikedTeamsThunk} from "../services/teams-thunks";
 
 const usersReducer = createSlice({
     name: 'users',
     initialState: {
         currentUser: {},
         profile: {},
-        comments: []
+        comments: [],
+        likedTeams: [],
+        dislikedTeams: []
     },
     extraReducers: {
         [registerThunk.fulfilled]: (state, action) => {
@@ -37,6 +40,12 @@ const usersReducer = createSlice({
         },
         [getCommentsByUserThunk.fulfilled]: (state, action) => {
             state.comments = action.payload
+        },
+        [getUserLikedTeamsThunk.fulfilled]: (state, action) => {
+            state.likedTeams = action.payload
+        },
+        [getUserDislikedTeamsThunk.fulfilled]: (state, action) => {
+            state.dislikedTeams = action.payload
         }
     }
 })

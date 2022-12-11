@@ -5,6 +5,9 @@ import {getTeamByUserIDThunk, likeTeamThunk, postTeamCommentThunk} from "../serv
 import Comments from "../team/comments";
 import TeamStat from "../team/team-stat";
 import ProfileInfo from "./profile-info";
+import UserComments from "./user-comments";
+import LikedTeams from "./liked-team";
+import DislikedTeams from "./disliked-teams";
 
 const ViewProfile = () => {
 
@@ -37,7 +40,7 @@ const ViewProfile = () => {
         <>
             <ProfileInfo uid={uid}/>
             <h2>This is your team(ID's)</h2>
-            {team.pokemons !== undefined && team.pokemons.map((pokemon) => (<li>{pokemon}</li>))}
+            {team && team.pokemons.map((pokemon) => (<li>{pokemon}</li>))}
             <h3>Comments</h3>
             <textarea
                 onChange={(e) => setPost(e.target.value)}
@@ -48,11 +51,12 @@ const ViewProfile = () => {
             <button onClick={() => handlePostComment(team._id, post)}>
                 Post Comment
             </button>
-            {team._id !== undefined && <Comments tid={team._id}/>}
-
-
+            {team && <Comments tid={team._id}/>}
             <h4>stats</h4>
-            {team._id !== undefined && <TeamStat tid={team._id}/>}
+            {team && <TeamStat tid={team._id}/>}
+            <UserComments uid={uid}/>
+            <LikedTeams uid={uid}/>
+            <DislikedTeams uid={uid}/>
            </>
     )
 }

@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import {getProfileThunk} from "../services/users-thunks";
 
 const ProfileInfo = ({uid}) => {
-    const {profile} = useSelector((state) => state.users)
+    const {profile, currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     useEffect(() => {dispatch(getProfileThunk(uid))}, [uid])
 
@@ -11,9 +11,13 @@ const ProfileInfo = ({uid}) => {
         <>
             <h3>Personal Info:</h3>
             <div>Username: {profile.username}</div>
-            <div>First Name: {profile.firstName ? profile.firstName : "Not set"}</div>
-            <div>Last Name: {profile.lastName ? profile.lastName : "Not set"}</div>
-            <div>Email: {profile.email ? profile.email : "Not set"}</div>
+            {currentUser._id === profile._id &&
+                <>
+                    <div>First Name: {profile.firstName ? profile.firstName : "Not set"}</div>
+                    <div>Last Name: {profile.lastName ? profile.lastName : "Not set"}</div>
+                    <div>Email: {profile.email ? profile.email : "Not set"}</div>
+                </>
+            }
         </>
     )
 }

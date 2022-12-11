@@ -10,8 +10,8 @@ import {
 const teamReducer = createSlice({
     name: 'teams',
     initialState: {
-        team: {},
-        stats: {},
+        team: null,
+        stats: null,
         comments: [],
         liked: false,
         disliked: false
