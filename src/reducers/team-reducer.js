@@ -1,11 +1,12 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, current} from "@reduxjs/toolkit";
 import {
+    addPokemonToTeamThunk,
     deleteCommentOnTeamThunk,
     dislikeTeamThunk,
     getTeamByUserIDThunk,
     getTeamCommentsByTeamIDThunk,
     getTeamStatsThunk, getUserLikedTeamStatusThunk, likeTeamThunk,
-    postTeamCommentThunk, removeStatusThunk
+    postTeamCommentThunk, removePokemonFromTeamThunk, removeStatusThunk
 } from "../services/teams-thunks";
 
 const teamReducer = createSlice({
@@ -79,6 +80,13 @@ const teamReducer = createSlice({
         },
         [deleteCommentOnTeamThunk.fulfilled]: (state, action) => {
             state.comments = state.comments.filter(comment => comment._id !== action.payload)
+        },
+        [addPokemonToTeamThunk.fulfilled]: (state, action) => {
+            const currentTeam = state.team.pokemons
+            console.log(currentTeam)
+        },
+        [removePokemonFromTeamThunk.fulfilled]: (state, action) => {
+            state.team.pokemons = state.team.pokemons.filter(pid => pid !== action.payload)
         }
     }
 })

@@ -20,6 +20,7 @@ import {useEffect} from "react";
 import {searchMonThunk, updateMonThunk} from "../services/pokemon-thunks";
 import capitalize from "../util";
 import "./index.css";
+import {addPokemonToTeamThunk} from "../services/teams-thunks";
 
 function Details() {
     const {id} = useParams();
@@ -29,6 +30,8 @@ function Details() {
     useEffect(() => {
         dispatch(searchMonThunk(id))
     }, [])
+
+    /*
     const addToTeamHandler = () => {
         if (!currentUser) {
             alert("Please log in if you would like to create/edit a Pokemon team!");
@@ -50,7 +53,18 @@ function Details() {
             teams: mon.teams.filter((team) => team._id !== currentUser.team)
         }
         dispatch(updateMonThunk(updatedMon));
+    }*/
+
+    const handleAddToTeamBtn = (mon) => {
+        if (!currentUser) {
+            alert("Please log in if you would like to create/edit a Pokemon team!");
+            return;
+        }
+
+        console.log(mon)
+        dispatch(addPokemonToTeamThunk({uid: currentUser._id, pid: mon.id}))
     }
+
     return (
         loading ? <h1>Loading...</h1> :
             <div>
@@ -83,13 +97,12 @@ function Details() {
                     {
                         mon.teams.map(team => team._id).includes(currentUser.team) ?
                             <button type="button"
-                                    className="btn btn-lg btn-warning"
-                                    onClick={removeFromTeamHandler}>
+                                    className="btn btn-lg btn-warning">
                                 Remove from Team
                             </button> :
                             <button type="button"
                                     className="btn btn-lg btn-success"
-                                    onClick={addToTeamHandler}>
+                                    onClick={() => handleAddToTeamBtn(mon)}>
                                 Add to Team
                             </button>
 
@@ -99,7 +112,6 @@ function Details() {
                 <div className="list-group">
                     {
                         mon.teams.map(team => {
-                            console.log(team);
                             return <div className="list-group-item" key={team._id}>
                                 <Link to={`/profile/${team.user._id}`}>{team.user.username}</Link>
                             </div>
