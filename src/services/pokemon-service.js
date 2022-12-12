@@ -11,3 +11,8 @@ export const searchMon = async (id) => {
     const response = await axios.get(`${POKEMON_API}/${id}`);
     return response.data;
 };
+
+export const updateMon = async (mon) => {
+    const response = await axios.put(`${POKEMON_API}/${mon.id}`, mon);
+    return response.data;
+};

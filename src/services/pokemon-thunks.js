@@ -10,3 +10,8 @@ export const searchMonThunk = createAsyncThunk(
     'pokemon/searchMon', async (id) =>
         await service.searchMon(id)
 );
+
+export const updateMonThunk = createAsyncThunk(
+    'pokemon/updateMon', async (mon) =>
+        await service.updateMon(mon)
+);

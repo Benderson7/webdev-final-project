@@ -14,45 +14,97 @@
  where unique identifier uniquely identifies the item being displayed
  **/
 
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {searchMonThunk} from "../services/pokemon-thunks";
+import {searchMonThunk, updateMonThunk} from "../services/pokemon-thunks";
 import capitalize from "../util";
 import "./index.css";
 
 function Details() {
     const {id} = useParams();
     const {mon, loading} = useSelector(state => state.mon);
+    const {currentUser} = useSelector(state => state.users)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(searchMonThunk(id))
     }, [])
+    const addToTeamHandler = () => {
+        if (!currentUser) {
+            alert("Please log in if you would like to create/edit a Pokemon team!");
+            return;
+        }
+        const updatedMon = {
+            ...mon,
+            teams: mon.teams ? [...mon.teams.map(team => team.id), currentUser.team] : [currentUser.team]
+        }
+        dispatch(updateMonThunk(updatedMon));
+    }
+    const removeFromTeamHandler = () => {
+        if (!currentUser) {
+            alert("Please log in if you would like to create/edit a Pokemon team!");
+            return;
+        }
+        const updatedMon = {
+            ...mon,
+            teams: mon.teams.filter((team) => team._id !== currentUser.team)
+        }
+        dispatch(updateMonThunk(updatedMon));
+    }
     return (
         loading ? <h1>Loading...</h1> :
-            <div className="list-group list-group-horizontal row">
-                <div className="list-group-item col-2">
-                    <img className="details-img" src={mon.sprite} alt={mon.name}/>
-                </div>
-                <div className="list-group-item col-10">
-                    <div className="list-group">
-                        <div className="list-group list-group-flush">
-                            <div className="list-group-item fw-bold">
-                                {capitalize(mon.name)}
-                            </div>
-                            <div className="list-group-item">
-                                <span className="fw-bold">Type(s): </span>
-                                {mon.types.length === 1 ? capitalize(mon.types[0]) : `${capitalize(mon.types[0])}, ${capitalize(mon.types[1])}`}
-                            </div>
-                            <div className="list-group-item">
-                                <span className="fw-bold">Ability: </span>
-                                {mon.abilities[0]}
-                                <br/>
-                                <span className="fw-bold">Hidden Ability: </span>
-                                {mon.abilities[1]}
+            <div>
+                <div className="list-group list-group-horizontal row mb-2">
+                    <div className="list-group-item col-12 col-lg-3 d-flex justify-content-center">
+                        <img className="details-img" src={mon.sprite} alt={mon.name}/>
+                    </div>
+                    <div className="list-group-item col-12 col-lg-9">
+                        <div className="list-group">
+                            <div className="list-group list-group-flush">
+                                <div className="list-group-item fw-bold">
+                                    {capitalize(mon.name)}
+                                </div>
+                                <div className="list-group-item">
+                                    <span className="fw-bold">Type(s): </span>
+                                    {mon.types.length === 1 ? capitalize(mon.types[0]) : `${capitalize(mon.types[0])}, ${capitalize(mon.types[1])}`}
+                                </div>
+                                <div className="list-group-item">
+                                    <span className="fw-bold">Ability: </span>
+                                    {mon.abilities[0]}
+                                    <br/>
+                                    <span className="fw-bold">Hidden Ability: </span>
+                                    {mon.abilities[1]}
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="mb-2">
+                    {
+                        mon.teams.map(team => team._id).includes(currentUser.team) ?
+                            <button type="button"
+                                    className="btn btn-lg btn-warning"
+                                    onClick={removeFromTeamHandler}>
+                                Remove from Team
+                            </button> :
+                            <button type="button"
+                                    className="btn btn-lg btn-success"
+                                    onClick={addToTeamHandler}>
+                                Add to Team
+                            </button>
+
+                    }
+                </div>
+                <h2>Users who have this Pokemon on their Team</h2>
+                <div className="list-group">
+                    {
+                        mon.teams.map(team => {
+                            console.log(team);
+                            return <div className="list-group-item" key={team._id}>
+                                <Link to={`/profile/${team.user._id}`}>{team.user.username}</Link>
+                            </div>
+                        })
+                    }
                 </div>
             </div>
     );
