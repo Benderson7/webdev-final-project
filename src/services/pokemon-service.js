@@ -7,7 +7,7 @@ export const getPokemon = async () => {
     return response.data;
 };
 
-export const searchMon = async (name) => {
-    const response = await axios.get(`${POKEMON_API}/${name}`);
+export const searchMon = async (id) => {
+    const response = await axios.get(`${POKEMON_API}/${id}`);
     return response.data;
 };

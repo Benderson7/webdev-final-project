@@ -7,6 +7,6 @@ export const getPokemonThunk = createAsyncThunk(
 );
 
 export const searchMonThunk = createAsyncThunk(
-    'pokemon/searchMon', async (name) =>
-        await service.searchMon(name)
+    'pokemon/searchMon', async (id) =>
+        await service.searchMon(id)
 );

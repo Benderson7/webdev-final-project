@@ -18,38 +18,42 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {searchMonThunk} from "../services/pokemon-thunks";
+import capitalize from "../util";
+import "./index.css";
 
 function Details() {
-    const {name} = useParams();
+    const {id} = useParams();
     const {mon, loading} = useSelector(state => state.mon);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(searchMonThunk(name))
+        dispatch(searchMonThunk(id))
     }, [])
-    console.log(mon);
     return (
         loading ? <h1>Loading...</h1> :
-            <div className="list-group">
-                <div className="list-group-item">
-                    <img src={mon.sprite}/>
+            <div className="list-group list-group-horizontal row">
+                <div className="list-group-item col-2">
+                    <img className="details-img" src={mon.sprite} alt={mon.name}/>
                 </div>
-                <div className="list-group-item">
-                    {mon.id}
+                <div className="list-group-item col-10">
+                    <div className="list-group">
+                        <div className="list-group list-group-flush">
+                            <div className="list-group-item fw-bold">
+                                {capitalize(mon.name)}
+                            </div>
+                            <div className="list-group-item">
+                                <span className="fw-bold">Type(s): </span>
+                                {mon.types.length === 1 ? capitalize(mon.types[0]) : `${capitalize(mon.types[0])}, ${capitalize(mon.types[1])}`}
+                            </div>
+                            <div className="list-group-item">
+                                <span className="fw-bold">Ability: </span>
+                                {mon.abilities[0]}
+                                <br/>
+                                <span className="fw-bold">Hidden Ability: </span>
+                                {mon.abilities[1]}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="list-group-item">
-                    Types: {mon.types.map((t) => <span>{t} </span>)}
-                </div>
-                <div className="list-group-item">
-                    Abilities: {mon.abilities[0]}
-                    <br/>
-                    Hidden Ability: {mon.abilities[1]}
-                </div>
-                {/*<div className="list-group-item">*/}
-                {/*    mon Weight: {mon.weight}*/}
-                {/*</div>*/}
-                {/*<div className="list-group-item">*/}
-                {/*    mon Height: {mon.height}*/}
-                {/*</div>*/}
             </div>
     );
 }
