@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {getCurrentUserThunk, updateThunk} from "../services/users-thunks";
+import {updateUserThunk} from "../services/users-thunks";
 import {useNavigate} from "react-router-dom";
 
 const EditProfile = () => {
@@ -11,7 +11,7 @@ const EditProfile = () => {
     const dispatch = useDispatch()
     const navigation = useNavigate()
     const handleUpdateBtn = () => {
-        dispatch(updateThunk(updateUser))
+        dispatch(updateUserThunk(updateUser))
         setUpdateUser({...updateUser, password: ''})
         navigation("/profile")
     }
@@ -22,52 +22,78 @@ const EditProfile = () => {
     return(
         <>
             {updateUser.username !== undefined &&
-            <div>
-
-                <label htmlFor={"usernameInput"} >Username: </label>
-                <input
-                    id={"usernameInput"}
-                    onChange={(e) => setUpdateUser({...updateUser, username: e.target.value})}
-                    placeholder={"username"}
-                    value={updateUser.username}/>
-                <br/>
-                <label htmlFor={"passwordInput"}>Password: </label>
-                <input
-                    id={"passwordInput"}
-                    onChange={(e) => setUpdateUser({...updateUser, password: e.target.value})}
-                    type={"password"}
-                    placeholder={"password"}
-                    value={updateUser.password}/>
-                <br/>
-                <label htmlFor={"emailInput"}>Email: </label>
-                <input
-                    id={"emailInput"}
-                    onChange={(e) => setUpdateUser({...updateUser, email: e.target.value})}
-                    type={"email"}
-                    placeholder={"email"}
-                    value={updateUser.email}/>
-                <br/>
-                <label htmlFor={"firstnameInput"}>First Name: </label>
-                <input
-                    id={"firstnameInput"}
-                    onChange={(e) => setUpdateUser({...updateUser, firstName: e.target.value})}
-                    placeholder={"First Name"}
-                    value={updateUser.firstName}/>
-                <br/>
-                <label htmlFor={"lastnameInput"}>Password: </label>
-                <input
-                    id={"lastnameInput"}
-                    onChange={(e) => setUpdateUser({...updateUser, lastName: e.target.value})}
-                    placeholder={"Last Name"}
-                    value={updateUser.lastName}/>
-                <br/>
-                <button onClick={handleUpdateBtn}>Save</button>
-                <br/>
-                <button onClick={handleBackBtn}>
-                    Go Back to Profile
-                </button>
-
-            </div>
+            <form>
+                <h3>Edit Your Personal Information:</h3>
+                <div className={"row mb-3"}>
+                    <label htmlFor={"usernameInput"} className={"col-3 col-form-label"}>Username:</label>
+                    <div className={"col-9"}>
+                        <input className={"form-control"}
+                               id={"usernameInput"}
+                               onChange={(e) => setUpdateUser({...updateUser, username: e.target.value})}
+                               placeholder={"username"}
+                               value={updateUser.username}
+                        />
+                    </div>
+                </div>
+                <div className={"row mb-3"}>
+                    <label htmlFor={"passwordInput"} className={"col-3 col-form-label"}>Password:</label>
+                    <div className={"col-9"}>
+                        <input className={"form-control"}
+                            id={"passwordInput"}
+                            onChange={(e) => setUpdateUser({...updateUser, password: e.target.value})}
+                            type={"password"}
+                            placeholder={"password"}
+                            value={updateUser.password}
+                        />
+                    </div>
+                </div>
+                <div className={"row mb-3"}>
+                    <label htmlFor={"emailInput"} className={"col-3 col-form-label"}>Email:</label>
+                    <div className={"col-9"}>
+                        <input className={"form-control"}
+                               id={"emailInput"}
+                               onChange={(e) => setUpdateUser({...updateUser, email: e.target.value})}
+                               type={"email"}
+                               placeholder={"email"}
+                               value={updateUser.email}
+                        />
+                    </div>
+                </div>
+                <div className={"row mb-3"}>
+                    <label htmlFor={"firstnameInput"} className={"col-3 col-form-label"}>Firstname:</label>
+                    <div className={"col-9"}>
+                        <input className={"form-control"}
+                               id={"firstnameInput"}
+                               onChange={(e) => setUpdateUser({...updateUser, firstName: e.target.value})}
+                               placeholder={"First Name"}
+                               value={updateUser.firstName}
+                        />
+                    </div>
+                </div>
+                <div className={"row mb-3"}>
+                    <label htmlFor={"lastnameInput"} className={"col-3 col-form-label"}>Last Name:</label>
+                    <div className={"col-9"}>
+                        <input className={"form-control"}
+                               id={"lastnameInput"}
+                               onChange={(e) => setUpdateUser({...updateUser, lastName: e.target.value})}
+                               placeholder={"Last Name"}
+                               value={updateUser.lastName}
+                        />
+                    </div>
+                </div>
+                <div className={"row"}>
+                    <div className={"col-8"}>
+                        <button onClick={handleBackBtn} type={"button"} className={"btn btn-danger"}>
+                            Go Back to Profile
+                        </button>
+                    </div>
+                    <div className={"col-4 float-end"}>
+                        <button onClick={handleUpdateBtn} type={"button"} className={"btn btn-primary float-end"}>
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </form>
             }
         </>
     )

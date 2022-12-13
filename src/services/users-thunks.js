@@ -35,7 +35,7 @@ export const getProfileThunk = createAsyncThunk(
     async (uid) => await getProfile(uid)
 )
 
-export const updateThunk = createAsyncThunk(
+export const updateUserThunk = createAsyncThunk(
     'updateUser',
     async (user) => {
         await updateUser(user)

@@ -1,11 +1,11 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, current} from "@reduxjs/toolkit";
 import {
     getProfileThunk,
     loginThunk,
     logoutThunk,
     getCurrentUserThunk,
     registerThunk,
-    updateThunk,
+    updateUserThunk,
     getCommentsByUserThunk, getAllUsersThunk, deleteUserThunk
 } from "../services/users-thunks";
 import {getUserDislikedTeamsThunk, getUserLikedTeamsThunk} from "../services/teams-thunks";
@@ -36,8 +36,9 @@ const usersReducer = createSlice({
         [getProfileThunk.fulfilled]: (state, action) => {
             state.profile = action.payload
         },
-        [updateThunk.fulfilled]: (state, {payload}) => {
-            state.currentUser = payload;
+        [updateUserThunk.fulfilled]: (state, action) => {
+            action.payload.password = ''
+            state.currentUser = action.payload;
         },
         [getCommentsByUserThunk.fulfilled]: (state, action) => {
             state.comments = action.payload
