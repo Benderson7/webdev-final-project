@@ -2,8 +2,8 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import * as service from "./pokemon-service"
 
 export const getPokemonThunk = createAsyncThunk(
-    'pokemon/getPokemon', async () =>
-        await service.getPokemon()
+    'pokemon/getPokemon', async (query) =>
+        await service.getPokemon(query)
 );
 
 export const searchMonThunk = createAsyncThunk(

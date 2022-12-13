@@ -2,9 +2,13 @@ import axios from "axios";
 const API_BASE = process.env.REACT_APP_API_BASE;
 const POKEMON_API = `${API_BASE}/pokemon`;
 
-export const getPokemon = async () => {
-    const response = await axios.get(POKEMON_API);
-    return response.data;
+export const getPokemon = async (query) => {
+    if (query) {
+        const response = await axios.get(`${POKEMON_API}/${query}`);
+        return response ? [response.data] : [];
+    } else {
+        return (await axios.get(POKEMON_API)).data;
+    }
 };
 
 export const searchMon = async (id) => {
