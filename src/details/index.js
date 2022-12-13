@@ -31,30 +31,6 @@ function Details() {
         dispatch(searchMonThunk(id))
     }, [])
 
-    /*
-    const addToTeamHandler = () => {
-        if (!currentUser) {
-            alert("Please log in if you would like to create/edit a Pokemon team!");
-            return;
-        }
-        const updatedMon = {
-            ...mon,
-            teams: mon.teams ? [...mon.teams.map(team => team.id), currentUser.team] : [currentUser.team]
-        }
-        dispatch(updateMonThunk(updatedMon));
-    }
-    const removeFromTeamHandler = () => {
-        if (!currentUser) {
-            alert("Please log in if you would like to create/edit a Pokemon team!");
-            return;
-        }
-        const updatedMon = {
-            ...mon,
-            teams: mon.teams.filter((team) => team._id !== currentUser.team)
-        }
-        dispatch(updateMonThunk(updatedMon));
-    }*/
-
     const handleAddToTeamBtn = (mon) => {
         if (!currentUser) {
             alert("Please log in if you would like to create/edit a Pokemon team!");
