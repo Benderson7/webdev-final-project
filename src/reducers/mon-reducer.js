@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {searchMonThunk, updateMonThunk} from "../services/pokemon-thunks";
+import {getTeamsWithPokemonThunk} from "../services/teams-thunks";
 
 const initialState = {
     mon: undefined,
-    loading: true
+    loading: true,
+    allTeams: []
 }
 
 const monSlice = createSlice({
@@ -19,7 +21,10 @@ const monSlice = createSlice({
             (state, { payload }) => {
                 state.mon = payload
                 state.loading = false
-            }
+            },
+        [getTeamsWithPokemonThunk.fulfilled]: (state, action) => {
+            state.allTeams = action.payload
+        }
     }
 });
 

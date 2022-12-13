@@ -74,3 +74,8 @@ export const removePokemonFromTeam = async (uid, pid) => {
     const response = await api.put(`${BASE_API_URL}/users/${uid}/teams/remove/${pid}`)
     return pid
 }
+
+export const getTeamsWithPokemon = async (pid) => {
+    const response = await api.get(`${BASE_API_URL}/teams/pokemons/${pid}`)
+    return response.data
+}
