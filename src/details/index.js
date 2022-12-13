@@ -14,42 +14,86 @@
  where unique identifier uniquely identifies the item being displayed
  **/
 
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {searchMonThunk} from "../services/pokemon-thunks";
+import {searchMonThunk, updateMonThunk} from "../services/pokemon-thunks";
+import capitalize from "../util";
+import "./index.css";
+import {addPokemonToTeamThunk} from "../services/teams-thunks";
 
 function Details() {
-    const {name} = useParams();
+    const {id} = useParams();
     const {mon, loading} = useSelector(state => state.mon);
+    const {currentUser} = useSelector(state => state.users)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(searchMonThunk(name))
+        dispatch(searchMonThunk(id))
     }, [])
-    console.log(mon);
+
+    const handleAddToTeamBtn = (mon) => {
+        if (!currentUser) {
+            alert("Please log in if you would like to create/edit a Pokemon team!");
+            return;
+        }
+
+        console.log(mon)
+        dispatch(addPokemonToTeamThunk({uid: currentUser._id, pid: mon.id}))
+    }
+
     return (
         loading ? <h1>Loading...</h1> :
-            <div className="list-group">
-                <div className="list-group-item">
-                    <img src={mon.sprite}/>
+            <div>
+                <div className="list-group list-group-horizontal row mb-2">
+                    <div className="list-group-item col-12 col-lg-3 d-flex justify-content-center">
+                        <img className="details-img" src={mon.sprite} alt={mon.name}/>
+                    </div>
+                    <div className="list-group-item col-12 col-lg-9">
+                        <div className="list-group">
+                            <div className="list-group list-group-flush">
+                                <div className="list-group-item fw-bold">
+                                    {capitalize(mon.name)}
+                                </div>
+                                <div className="list-group-item">
+                                    <span className="fw-bold">Type(s): </span>
+                                    {mon.types.length === 1 ? capitalize(mon.types[0]) : `${capitalize(mon.types[0])}, ${capitalize(mon.types[1])}`}
+                                </div>
+                                <div className="list-group-item">
+                                    <span className="fw-bold">Ability: </span>
+                                    {mon.abilities[0]}
+                                    <br/>
+                                    <span className="fw-bold">Hidden Ability: </span>
+                                    {mon.abilities[1]}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="list-group-item">
-                    {mon.id}
+                <div className="mb-2">
+                    {
+                        mon.teams.map(team => team._id).includes(currentUser.team) ?
+                            <button type="button"
+                                    className="btn btn-lg btn-warning">
+                                Remove from Team
+                            </button> :
+                            <button type="button"
+                                    className="btn btn-lg btn-success"
+                                    onClick={() => handleAddToTeamBtn(mon)}>
+                                Add to Team
+                            </button>
+
+                    }
                 </div>
-                <div className="list-group-item">
-                    Types: {mon.types.map((t) => <span>{t} </span>)}
+                <h2>Users who have this Pokemon on their Team</h2>
+                <div className="list-group">
+                    {
+                        mon.teams.map(team => {
+                            return <div className="list-group-item" key={team._id}>
+                                <Link to={`/profile/${team.user._id}`}>{team.user.username}</Link>
+                            </div>
+                        })
+                    }
                 </div>
-                <div className="list-group-item">
-                    Abilities: {mon.abilities[0]}
-                    <br/>
-                    Hidden Ability: {mon.abilities[1]}
-                </div>
-                {/*<div className="list-group-item">*/}
-                {/*    mon Weight: {mon.weight}*/}
-                {/*</div>*/}
-                {/*<div className="list-group-item">*/}
-                {/*    mon Height: {mon.height}*/}
-                {/*</div>*/}
             </div>
     );
 }

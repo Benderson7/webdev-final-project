@@ -37,7 +37,7 @@ function App() {
                           <Route path="/login" element={<LoggedInRoute><Login/></LoggedInRoute>}/>
                           <Route path="/register" element={<LoggedInRoute><Register/></LoggedInRoute>}/>
                           <Route path="/pokemon" element={<Search/>}/>
-                          <Route path="/pokemon/:name" element={<Details/>}/>
+                          <Route path="/details/:id" element={<Details/>}/>
                           <Route path="/profile" element={<LoggedOutRoute><Profile/></LoggedOutRoute>}/>
                           <Route path="/edit-profile" element={<LoggedOutRoute><EditProfile/></LoggedOutRoute>}/>
                           <Route path={"/profile/:uid"} element={<ViewProfile/>}/>

@@ -5,7 +5,13 @@ import {
     getTeamStats,
     postTeamComment,
     likeTeam,
-    getUserLikedTeamStatus, removeStatus, dislikeTeam, getUserLikedTeams, getUserDislikedTeams, deleteCommentOnTeam
+    getUserLikedTeamStatus,
+    removeStatus,
+    dislikeTeam,
+    getUserLikedTeams,
+    getUserDislikedTeams,
+    deleteCommentOnTeam,
+    removePokemonFromTeam, addPokemonToTeam
 } from "./teams-services";
 
 export const getTeamByUserIDThunk = createAsyncThunk(
@@ -73,3 +79,13 @@ export const deleteCommentOnTeamThunk = createAsyncThunk(
     async (cid) => await deleteCommentOnTeam(cid)
 )
 
+
+export const addPokemonToTeamThunk = createAsyncThunk(
+    'addPokemonToTeam',
+    async (add) => await addPokemonToTeam(add.uid, add.pid)
+)
+
+export const removePokemonFromTeamThunk = createAsyncThunk(
+    'removePokemonFromTeam',
+    async (remove) => await removePokemonFromTeam(remove.uid, remove.pid)
+)

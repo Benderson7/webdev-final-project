@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { searchMonThunk } from "../services/pokemon-thunks";
+import {searchMonThunk, updateMonThunk} from "../services/pokemon-thunks";
 
 const initialState = {
     mon: undefined,
@@ -11,6 +11,11 @@ const monSlice = createSlice({
     initialState,
     extraReducers: {
         [searchMonThunk.fulfilled]:
+            (state, { payload }) => {
+                state.mon = payload
+                state.loading = false
+            },
+        [updateMonThunk.fulfilled]:
             (state, { payload }) => {
                 state.mon = payload
                 state.loading = false
