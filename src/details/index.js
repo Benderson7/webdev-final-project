@@ -99,7 +99,6 @@ function Details() {
                 <div className="list-group">
                     {
                         mon.teams.map(team => {
-                            console.log(team);
                             return <div className="list-group-item" key={team._id}>
                                 <Link to={`/profile/${team.user._id}`}>{team.user.username}</Link>
                             </div>
