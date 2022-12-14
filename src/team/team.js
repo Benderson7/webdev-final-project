@@ -21,12 +21,15 @@ const Team = ({uid}) => {
                 (pokemon) => {
                     return (
                         <>
-                            <li>{pokemon}</li>
-                            {currentUser._id === uid ?
-                                <button onClick={() => handleRemoveBtn(pokemon)}>Remove</button>
-                                :
-                                ''
-                            }
+                            <li>
+                                <img width={100} src={pokemon.sprite}/>
+                                {pokemon.name}
+                                {currentUser._id === uid ?
+                                    <button onClick={() => handleRemoveBtn(pokemon)}>Remove</button>
+                                    :
+                                    ''
+                                }
+                            </li>
                         </>
                     )
                 }

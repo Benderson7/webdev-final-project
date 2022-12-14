@@ -8,6 +8,7 @@ import ProfileInfo from "./profile-info";
 import UserComments from "./user-comments";
 import LikedTeams from "./liked-team";
 import DislikedTeams from "./disliked-teams";
+import Team from "../team/team";
 
 const ViewProfile = () => {
 
@@ -40,7 +41,7 @@ const ViewProfile = () => {
         <>
             <ProfileInfo uid={uid}/>
             <h2>This is your team(ID's)</h2>
-            {team && team.pokemons.map((pokemon) => (<li>{pokemon}</li>))}
+            {team && <Team uid={uid}/>}
             <h3>Comments</h3>
             <textarea
                 onChange={(e) => setPost(e.target.value)}
