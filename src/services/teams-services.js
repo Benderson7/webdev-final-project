@@ -12,6 +12,7 @@ export const getTeamByUserID = async (uid) => {
 }
 
 export const getTeamCommentsByTeamID = async (tid) => {
+    console.log("Getting " + tid + " team")
     const response = await api.get(`${BASE_API_URL}/teams/${tid}/comments`)
     return response.data
 }

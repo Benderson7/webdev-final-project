@@ -10,10 +10,22 @@ const Comment = ({comment}) => {
         dispatch(deleteCommentOnTeamThunk(cid))
     }
     return (
-        <li>
-            {comment.comment} by <Link to={`/profile/${comment.user._id}`}>{comment.user.username}</Link>
-            <button onClick={() => handleDeleteBtn(comment._id)}>Delete Comment</button>
-        </li>
+        <div className={"row"}>
+            <div className={"col"}>
+                <Link to={`/profile/${comment.user._id}`}>{comment.user.username}</Link>
+                <br/>
+                {comment.comment}
+            </div>
+            <div className={"col mt-1"}>
+                {currentUser._id === comment.user._id ?
+                    <button className={"btn btn-danger float-end"}
+                            onClick={() => handleDeleteBtn(comment._id)}>
+                        Delete Comment
+                    </button>
+                    :
+                    ''}
+            </div>
+        </div>
     )
 }
 

@@ -6,13 +6,14 @@ import Comment from "./comment";
 const Comments = ({tid}) => {
     const {comments} = useSelector((state) => state.team)
     const dispatch = useDispatch()
-    // eslint-disable-next-line
     useEffect(() => {dispatch(getTeamCommentsByTeamIDThunk(tid))}, [tid])
     return (
-        <>
-            <h4>Comments on Team</h4>
-            {comments.map((comment) => <Comment comment={comment}/>)}
-        </>
+        <div>
+            <h6>Comments on Team</h6>
+            <ul className={"list-group"}>
+                {comments.map((comment) => <li className={"list-group-item"}><Comment comment={comment}/></li>)}
+            </ul>
+        </div>
     )
 }
 

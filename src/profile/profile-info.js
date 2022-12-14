@@ -9,7 +9,7 @@ const ProfileInfo = ({uid}) => {
 
     return (
         <>
-            <h3>Personal Info:</h3>
+            <h3>Account Info:</h3>
             <div>Username: {profile.username}</div>
             {currentUser._id === profile._id &&
                 <>

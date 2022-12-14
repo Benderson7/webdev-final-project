@@ -11,20 +11,19 @@ import DislikedTeams from "./disliked-teams";
 import Team from "../team/team";
 
 const ViewProfile = () => {
-
-    const {currentUser} = useSelector((state) => state.users)
     const {uid} = useParams();
-    const {team, liked, disliked} = useSelector((state) => state.team)
-    const [post, setPost] = useState("");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {currentUser} = useSelector((state) => state.users)
+    const {team} = useSelector((state) => state.team)
+    const [post, setPost] = useState("");
 
     useEffect(() => {dispatch(getTeamByUserIDThunk(uid))}, [uid])
-    const navigate = useNavigate();
 
 
     const handlePostComment = (tid, comment) => {
         if (currentUser._id === undefined) {
-            navigate('/login')
+            navigate('Must login to post a comment.')
         }
         else {
             dispatch(postTeamCommentThunk({user: currentUser._id, team: tid, comment: comment}))
@@ -40,9 +39,7 @@ const ViewProfile = () => {
     return(
         <>
             <ProfileInfo uid={uid}/>
-            <h2>This is your team(ID's)</h2>
             {team && <Team uid={uid}/>}
-            <h3>Comments</h3>
             <textarea
                 onChange={(e) => setPost(e.target.value)}
                 value={post}
@@ -52,9 +49,6 @@ const ViewProfile = () => {
             <button onClick={() => handlePostComment(team._id, post)}>
                 Post Comment
             </button>
-            {team && <Comments tid={team._id}/>}
-            <h4>stats</h4>
-            {team && <TeamStat tid={team._id}/>}
             <UserComments uid={uid}/>
             <LikedTeams uid={uid}/>
             <DislikedTeams uid={uid}/>
