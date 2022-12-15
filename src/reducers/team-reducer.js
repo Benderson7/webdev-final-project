@@ -24,7 +24,6 @@ const teamReducer = createSlice({
         },
         [getTeamCommentsByTeamIDThunk.fulfilled]: (state, action) => {
             state.comments = action.payload
-            console.log(action.payload)
         },
         [getTeamStatsThunk.fulfilled]: (state, action) => {
             state.stats = action.payload
@@ -84,7 +83,6 @@ const teamReducer = createSlice({
         },
         [addPokemonToTeamThunk.fulfilled]: (state, action) => {
             const currentTeam = state.team.pokemons
-            console.log(currentTeam)
         },
         [removePokemonFromTeamThunk.fulfilled]: (state, action) => {
             state.team.pokemons = state.team.pokemons.filter(pokemon => pokemon.id !== action.payload)

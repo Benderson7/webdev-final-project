@@ -1,4 +1,4 @@
-import {logoutThunk} from "../services/users-thunks";
+import {getCurrentUserThunk, logoutThunk} from "../services/users-thunks";
 import {useDispatch, useSelector} from "react-redux";
 import Team from "../team/team";
 import UserComments from "./user-comments";
@@ -6,6 +6,7 @@ import LikedTeams from "./liked-team";
 import DislikedTeams from "./disliked-teams";
 import "./index.css"
 import AccountInfo from "./account-info";
+import {useEffect} from "react";
 
 const Profile = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -13,6 +14,8 @@ const Profile = () => {
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
     }
+
+    useEffect(() => {dispatch(getCurrentUserThunk())}, [])
 
     return(
         <>

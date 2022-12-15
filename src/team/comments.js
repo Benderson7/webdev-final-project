@@ -7,6 +7,7 @@ const Comments = ({tid}) => {
     const {comments} = useSelector((state) => state.team)
     const dispatch = useDispatch()
     useEffect(() => {dispatch(getTeamCommentsByTeamIDThunk(tid))}, [tid])
+    console.log(tid)
     return (
         <div>
             <h6>Comments on Team</h6>

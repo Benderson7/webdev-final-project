@@ -21,13 +21,6 @@ export const getTeamByUserIDThunk = createAsyncThunk(
     }
 )
 
-export const getTeamCommentsByTeamIDThunk = createAsyncThunk(
-    'getTeamComments',
-    async (tid) => {
-        return await getTeamCommentsByTeamID(tid)
-    }
-)
-
 export const getTeamStatsThunk = createAsyncThunk(
     'getTeamStats',
     async (tid) => {
@@ -61,6 +54,15 @@ export const removeStatusThunk = createAsyncThunk(
 export const getUserLikedTeamStatusThunk = createAsyncThunk(
     'getUserLikedTeamStatus',
     async (status) => await getUserLikedTeamStatus(status.tid)
+)
+
+
+
+export const getTeamCommentsByTeamIDThunk = createAsyncThunk(
+    'getTeamComments',
+    async (tid) => {
+        return await getTeamCommentsByTeamID(tid)
+    }
 )
 
 export const getUserLikedTeamsThunk = createAsyncThunk(
