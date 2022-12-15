@@ -14,6 +14,9 @@ function Home() {
         );
     }
     else {
+        // Popular Teams
+
+        // Your Recent Comments
         return (<>Regular User</>);
     }
 }

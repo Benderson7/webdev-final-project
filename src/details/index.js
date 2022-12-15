@@ -32,7 +32,7 @@ function Details() {
 
     const handleAddToTeamBtn = (mon) => {
         if (!currentUser) {
-            alert("Please log in if you would like to create/edit a Pokemon team!");
+            alert("Please log in if you would like to add a pokemon to your team.");
             return;
         }
         dispatch(addPokemonToTeamThunk({uid: currentUser._id, pid: mon.id}))

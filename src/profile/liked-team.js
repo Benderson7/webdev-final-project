@@ -20,7 +20,6 @@ const LikedTeams = ({uid}) => {
                         </Link>
                     </li>)}
             </ul>
-            <br/>
         </div>
     )
 }

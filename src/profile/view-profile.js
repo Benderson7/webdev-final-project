@@ -1,7 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {Navigate, useParams} from "react-router-dom";
-import {getTeamByUserIDThunk} from "../services/teams-thunks";
+import {useEffect, useState} from "react";
+import {Navigate, useNavigate, useParams} from "react-router-dom";
+import {getTeamByUserIDThunk, likeTeamThunk, postTeamCommentThunk} from "../services/teams-thunks";
+import Comments from "../team/comments";
+import TeamStat from "../team/team-stat";
 import ProfileInfo from "./profile-info";
 import UserComments from "./user-comments";
 import LikedTeams from "./liked-team";
@@ -19,7 +21,6 @@ const ViewProfile = () => {
     if (currentUser._id !== undefined && currentUser._id === uid) {
         return (<Navigate to={'/profile'}/>)
     }
-
 
     return(
         <>

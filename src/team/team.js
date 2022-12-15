@@ -56,23 +56,20 @@ const Team = ({uid}) => {
             {team && <TeamStat tid={team._id}/>}
             {team && <Comments tid={team._id}/>}
             <br/>
-            <form className={"form-group"}>
-                <div className={"row"}>
-                    <div className={"col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-9 col-8"}>
-                        <textarea className={"form-control width-"}
-                                  onChange={(e) => setPost(e.target.value)}
-                                  value={post}
-                                  placeholder={"Post your comment"}
-                        />
-                    </div>
-                    <div className={"col-1"}>
-                        <button className={"btn btn-success pe-3"}
-                                onClick={() => handlePostComment(team._id, post)}>
-                            Post Comment
-                        </button>
-                    </div>
+            <div className={"row"}>
+                <div className={"col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-9 col-8"}>
+                    <textarea className={"form-control"}
+                              onChange={(e) => setPost(e.target.value)}
+                              value={post}
+                              placeholder={"Post your comment"}/>
                 </div>
-            </form>
+                <div className={"col-1"}>
+                    <button className={"btn btn-success pe-3"}
+                            onClick={() => handlePostComment(team._id, post)}>
+                        Post Comment
+                    </button>
+                </div>
+            </div>
             <br/>
         </div>
     )
