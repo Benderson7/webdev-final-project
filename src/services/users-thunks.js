@@ -7,7 +7,7 @@ import {
     updateUser,
     getProfile,
     getCommentsByUser,
-    getAllUsers, deleteUser
+    getAllUsers, deleteUser, getRecentCommentsByUser, getRecentComments, getRecentTeams
 } from "./users-service";
 
 export const logoutThunk = createAsyncThunk(
@@ -46,6 +46,21 @@ export const updateUserThunk = createAsyncThunk(
 export const getCommentsByUserThunk = createAsyncThunk(
     'getCommentsByUser',
     async (uid) => await getCommentsByUser(uid)
+)
+
+export const getRecentCommentsThunk = createAsyncThunk(
+    'getRecentComments',
+    async () => await getRecentComments()
+)
+
+export const getRecentCommentsByUserThunk = createAsyncThunk(
+    'getRecentCommentsByUser',
+    async () => await getRecentCommentsByUser()
+)
+
+export const getRecentTeamsThunk = createAsyncThunk(
+    'getRecentTeams',
+    async () => await getRecentTeams()
 )
 
 export const getAllUsersThunk = createAsyncThunk(

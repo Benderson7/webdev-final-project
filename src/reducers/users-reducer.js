@@ -6,9 +6,14 @@ import {
     getCurrentUserThunk,
     registerThunk,
     updateUserThunk,
-    getCommentsByUserThunk, getAllUsersThunk, deleteUserThunk
+    getCommentsByUserThunk,
+    getAllUsersThunk,
+    deleteUserThunk,
+    getRecentCommentsByUserThunk,
+    getRecentCommentsThunk,
+    getRecentTeamsThunk
 } from "../services/users-thunks";
-import {getUserDislikedTeamsThunk, getUserLikedTeamsThunk} from "../services/teams-thunks";
+import {deleteCommentOnTeamThunk, getUserDislikedTeamsThunk, getUserLikedTeamsThunk} from "../services/teams-thunks";
 
 const usersReducer = createSlice({
     name: 'users',
@@ -18,7 +23,10 @@ const usersReducer = createSlice({
         comments: [],
         likedTeams: [],
         dislikedTeams: [],
-        allUsers: []
+        allUsers: [],
+        recentCommentsByUser: [],
+        recentComments: [],
+        recentTeams: []
     },
     extraReducers: {
         [registerThunk.fulfilled]: (state, action) => {
@@ -49,6 +57,14 @@ const usersReducer = createSlice({
         [getCommentsByUserThunk.fulfilled]: (state, action) => {
             state.comments = action.payload
         },
+        [getRecentCommentsThunk.fulfilled]: (state, action) => {
+            console.log(action.payload)
+            state.recentComments = action.payload
+        },
+        [getRecentCommentsByUserThunk.fulfilled]: (state, action) => {
+            console.log(action.payload)
+            state.recentCommentsByUser = action.payload
+        },
         [getUserLikedTeamsThunk.fulfilled]: (state, action) => {
             state.likedTeams = action.payload
         },
@@ -60,6 +76,13 @@ const usersReducer = createSlice({
         },
         [deleteUserThunk.fulfilled]: (state, action) => {
             state.allUsers = state.allUsers.filter(user => user._id !== action.payload)
+        },
+        [deleteCommentOnTeamThunk.fulfilled]: (state, action) => {
+            state.recentCommentsByUser = state.comments.filter(comment => comment._id !== action.payload)
+        },
+        [getRecentTeamsThunk.fulfilled]: (state, action) => {
+            console.log(action.payload)
+            state.recentTeams = action.payload
         }
     }
 })

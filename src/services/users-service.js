@@ -43,6 +43,16 @@ export const getCommentsByUser = async (uid) => {
     return response.data
 }
 
+export const getRecentComments = async () => {
+    const response = await api.get(`${BASE_API_URL}/comments/recent`)
+    return response.data
+}
+
+export const getRecentCommentsByUser = async () => {
+    const response = await api.get(`${BASE_API_URL}/users/comments/recent`)
+    return response.data
+}
+
 export const getAllUsers = async () => {
     const allUsers = await api.get(`${BASE_API_URL}/users`)
     return allUsers.data
@@ -51,4 +61,10 @@ export const getAllUsers = async () => {
 export const deleteUser = async (uid) => {
     const status = await api.delete(`${BASE_API_URL}/users/${uid}`)
     return uid
+}
+
+export const getRecentTeams = async () => {
+    const status = await api.get(`${BASE_API_URL}/teams/status/recent`)
+    return status.data
+
 }
