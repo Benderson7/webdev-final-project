@@ -15,7 +15,7 @@ const DislikedTeams = ({uid}) => {
             <ul className={"list-group"}>
                 {dislikedTeams.map((team) =>
                     <li className={"list-group-item"}>
-                        <Link to={`/profile/${team.team.user._id}`}>
+                        <Link className={"text-primary"} to={`/profile/${team.team.user._id}`}>
                             {team.team.user.username}
                         </Link>
                     </li>)
