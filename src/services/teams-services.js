@@ -67,10 +67,8 @@ export const getUserDislikedTeams = async (uid) => {
 
 
 export const addPokemonToTeam = async (uid, pid) => {
-    console.log(uid)
-    console.log(pid)
     const response = await api.put(`${BASE_API_URL}/users/${uid}/teams/add/${pid}`)
-    return pid
+    return response.data
 }
 
 export const removePokemonFromTeam = async (uid, pid) => {
