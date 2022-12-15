@@ -22,8 +22,8 @@ const Profile = () => {
             {
                 currentUser._id !== undefined &&
                 <>
-                    <h2>{currentUser.username}</h2>
-                    <button onClick={handleLogoutBtn}>Logout</button>
+                    <h2 class="text-white">{currentUser.username}</h2>
+                    <button class="btn btn-danger" onClick={handleLogoutBtn}>Logout</button>
                     <br/>
                     <AccountInfo/>
                     <Team uid={currentUser._id}/>

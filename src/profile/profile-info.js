@@ -9,8 +9,7 @@ const ProfileInfo = ({uid}) => {
 
     return (
         <>
-            <h3>Account Info:</h3>
-            <div>Username: {profile.username}</div>
+            <h3 class="text-white">{profile.username}</h3>
             {currentUser._id === profile._id &&
                 <>
                     <div>First Name: {profile.firstName ? profile.firstName : "Not set"}</div>

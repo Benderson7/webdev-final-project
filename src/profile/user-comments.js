@@ -15,7 +15,9 @@ const UserComments = ({uid}) => {
             <ul className={"list-group"}>
                 {comments.map((comment) =>
                     <li className={"list-group-item"}>
-                        On <Link to={`/profile/${comment.team.user._id}`}>{comment.team.user.username}'s team
+
+                        <span class="text-muted"> On </span> <Link to={`/profile/${comment.team.user._id}`}><span class="text-muted"> {comment.team.user.username}'s team </span>
+
                         <br/>
                         {comment.comment} </Link>
                     </li>)}
