@@ -7,12 +7,15 @@ import DislikedTeams from "./disliked-teams";
 import "./index.css"
 import AccountInfo from "./account-info";
 import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 const Profile = () => {
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleLogoutBtn = () => {
         dispatch(logoutThunk())
+        navigate('/');
     }
 
     useEffect(() => {dispatch(getCurrentUserThunk())}, [])
@@ -43,8 +46,3 @@ const Profile = () => {
 }
 
 export default Profile
-
-
-// Show liked/dislike teams
-/*
- */

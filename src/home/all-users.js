@@ -17,10 +17,15 @@ const AllUsers = () => {
             {allUsers.map((user) => {
                 return (
                     <div className={'list-group-item'} key={user._id}>
-                        <Link to={`/profile/${user._id}`}>{user.username}</Link>
+                        <Link to={`/profile/${user._id}`} className={"text-primary"}>
+                            {user.username}
+                        </Link>
+                        ({user.role})
 
                         {currentUser._id !== user._id &&
-                            <button className={'float-end'} onClick={() => handleDeleteBtn(user._id)}>
+                            <button
+                                    className={'float-end btn btn-danger'}
+                                    onClick={() => handleDeleteBtn(user._id)}>
                                 Delete
                             </button>
                         }

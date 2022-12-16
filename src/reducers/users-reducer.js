@@ -42,7 +42,7 @@ const usersReducer = createSlice({
             alert("Login failed")
         },
         [logoutThunk.fulfilled]: (state, action) => {
-            state.currentUser = null
+            state.currentUser = {}
         },
         [getCurrentUserThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
