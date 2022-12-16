@@ -34,10 +34,16 @@ const Profile = () => {
                         </div>
                     </div>
                     <AccountInfo/>
-                    <Team uid={currentUser._id}/>
-                    <UserComments uid={currentUser._id}/>
-                    <LikedTeams uid={currentUser._id}/>
-                    <DislikedTeams uid={currentUser._id}/>
+                    {currentUser.role === "ADMIN" ?
+                        ''
+                     :
+                        <>
+                            <Team uid={currentUser._id}/>
+                            <UserComments uid={currentUser._id}/>
+                            <LikedTeams uid={currentUser._id}/>
+                            <DislikedTeams uid={currentUser._id}/>
+                        </>
+                    }
                     <br/>
                 </div>
             }

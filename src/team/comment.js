@@ -19,7 +19,7 @@ const Comment = ({comment}) => {
                 {comment.comment}
             </div>
             <div className={"col mt-1"}>
-                {currentUser._id === comment.user._id ?
+                {(currentUser._id === comment.user._id || currentUser.role === 'ADMIN') ?
                     <button className={"btn btn-danger float-end"}
                             onClick={() => handleDeleteBtn(comment._id)}>
                         Delete Comment
