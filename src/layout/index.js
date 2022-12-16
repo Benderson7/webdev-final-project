@@ -19,7 +19,7 @@ function Layout({active = 'home'}) {
                 <div className={`list-group-item ${currentNav === 'home'?'active':''}`}>
                     <Link to="/">Home</Link>
                 </div>
-                <div className={`list-group-item ${currentNav === 'search'?'active':''}`}>
+                <div className={`list-group-item ${parts.includes('search') ? 'active':''}`}>
                     <Link to="/search">Search</Link>
                 </div>
                 <div className={`list-group-item ${(parts.includes("login") || parts.includes("register") || 
