@@ -20,82 +20,84 @@ const EditProfile = () => {
     }
 
     return(
-        <>
+        <div className={"wd-bg-white container pb-3"}>
             {updateUser.username !== undefined &&
             <form>
-                <h3>Edit Your Personal Information:</h3>
-                <div className={"row mb-3"}>
-                    <label htmlFor={"usernameInput"} className={"col-3 col-form-label"}>Username:</label>
-                    <div className={"col-9"}>
-                        <input className={"form-control"}
-                               id={"usernameInput"}
-                               onChange={(e) => setUpdateUser({...updateUser, username: e.target.value})}
-                               placeholder={"username"}
-                               value={updateUser.username}
-                        />
+                <h3 className={"mb-3"}>Edit Your Personal Information:</h3>
+                <div className={"container"}>
+                    <div className={"row mb-3"}>
+                        <label htmlFor={"usernameInput"} className={"col-3 col-form-label"}>Username:</label>
+                        <div className={"col-9"}>
+                            <input className={"form-control"}
+                                   id={"usernameInput"}
+                                   onChange={(e) => setUpdateUser({...updateUser, username: e.target.value})}
+                                   placeholder={"username"}
+                                   value={updateUser.username}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className={"row mb-3"}>
-                    <label htmlFor={"passwordInput"} className={"col-3 col-form-label"}>Password:</label>
-                    <div className={"col-9"}>
-                        <input className={"form-control"}
-                            id={"passwordInput"}
-                            onChange={(e) => setUpdateUser({...updateUser, password: e.target.value})}
-                            type={"password"}
-                            placeholder={"password"}
-                            value={updateUser.password}
-                        />
+                    <div className={"row mb-3"}>
+                        <label htmlFor={"passwordInput"} className={"col-3 col-form-label"}>Password:</label>
+                        <div className={"col-9"}>
+                            <input className={"form-control"}
+                                id={"passwordInput"}
+                                onChange={(e) => setUpdateUser({...updateUser, password: e.target.value})}
+                                type={"password"}
+                                placeholder={"password"}
+                                value={updateUser.password}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className={"row mb-3"}>
-                    <label htmlFor={"emailInput"} className={"col-3 col-form-label"}>Email:</label>
-                    <div className={"col-9"}>
-                        <input className={"form-control"}
-                               id={"emailInput"}
-                               onChange={(e) => setUpdateUser({...updateUser, email: e.target.value})}
-                               type={"email"}
-                               placeholder={"email"}
-                               value={updateUser.email}
-                        />
+                    <div className={"row mb-3"}>
+                        <label htmlFor={"emailInput"} className={"col-3 col-form-label"}>Email:</label>
+                        <div className={"col-9"}>
+                            <input className={"form-control"}
+                                   id={"emailInput"}
+                                   onChange={(e) => setUpdateUser({...updateUser, email: e.target.value})}
+                                   type={"email"}
+                                   placeholder={"email"}
+                                   value={updateUser.email}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className={"row mb-3"}>
-                    <label htmlFor={"firstnameInput"} className={"col-3 col-form-label"}>Firstname:</label>
-                    <div className={"col-9"}>
-                        <input className={"form-control"}
-                               id={"firstnameInput"}
-                               onChange={(e) => setUpdateUser({...updateUser, firstName: e.target.value})}
-                               placeholder={"First Name"}
-                               value={updateUser.firstName}
-                        />
+                    <div className={"row mb-3"}>
+                        <label htmlFor={"firstnameInput"} className={"col-3 col-form-label"}>First name:</label>
+                        <div className={"col-9"}>
+                            <input className={"form-control"}
+                                   id={"firstnameInput"}
+                                   onChange={(e) => setUpdateUser({...updateUser, firstName: e.target.value})}
+                                   placeholder={"First Name"}
+                                   value={updateUser.firstName}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className={"row mb-3"}>
-                    <label htmlFor={"lastnameInput"} className={"col-3 col-form-label"}>Last Name:</label>
-                    <div className={"col-9"}>
-                        <input className={"form-control"}
-                               id={"lastnameInput"}
-                               onChange={(e) => setUpdateUser({...updateUser, lastName: e.target.value})}
-                               placeholder={"Last Name"}
-                               value={updateUser.lastName}
-                        />
+                    <div className={"row mb-3"}>
+                        <label htmlFor={"lastnameInput"} className={"col-3 col-form-label"}>Last Name:</label>
+                        <div className={"col-9"}>
+                            <input className={"form-control"}
+                                   id={"lastnameInput"}
+                                   onChange={(e) => setUpdateUser({...updateUser, lastName: e.target.value})}
+                                   placeholder={"Last Name"}
+                                   value={updateUser.lastName}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className={"row"}>
-                    <div className={"col-8"}>
-                        <button onClick={handleBackBtn} type={"button"} className={"btn btn-danger"}>
-                            Go Back to Profile
-                        </button>
-                    </div>
-                    <div className={"col-4 float-end"}>
-                        <button onClick={handleUpdateBtn} type={"button"} className={"btn btn-primary float-end"}>
-                            Save
-                        </button>
+                    <div className={"row"}>
+                        <div className={"col-8"}>
+                            <button onClick={handleBackBtn} type={"button"} className={"btn btn-danger"}>
+                                Go Back to Profile
+                            </button>
+                        </div>
+                        <div className={"col-4 float-end"}>
+                            <button onClick={handleUpdateBtn} type={"button"} className={"btn btn-primary float-end"}>
+                                Save
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>
             }
-        </>
+        </div>
     )
 }
 

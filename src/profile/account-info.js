@@ -10,13 +10,16 @@ const AccountInfo = () => {
     }
 
     return(
-        <div className={"container wd-bg-white mt-3 mb-3"}>
+        <div className={"container wd-bg-white mt-3"}>
             {currentUser.username !== undefined &&
                 <form>
                     <h3>Account Info:</h3>
                     <div className={"row mb-3"}>
-                        <label htmlFor={"usernameInput"} className={"col-2 col-form-label"}>Username:</label>
-                        <div className={"col-9"}>
+                        <label htmlFor={"usernameInput"}
+                               className={"col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-3 form-label"}>
+                            Username:
+                        </label>
+                        <div className={"col-xxl-9 col-xl9 col-lg-9 col-md-9 col-8"}>
                             <input className={"form-control"}
                                    id={"usernameInput"}
                                    value={currentUser.username}
@@ -25,8 +28,11 @@ const AccountInfo = () => {
                         </div>
                     </div>
                     <div className={"row mb-3"}>
-                        <label htmlFor={"emailInput"} className={"col-2 col-form-label"}>Email:</label>
-                        <div className={"col-9"}>
+                        <label htmlFor={"emailInput"}
+                               className={"col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-3 form-label"}>
+                            Email:
+                        </label>
+                        <div className={"col-xxl-9 col-xl9 col-lg-9 col-md-9 col-8"}>
                             <input className={"form-control"}
                                    id={"emailInput"}
                                    type={"email"}
@@ -37,8 +43,11 @@ const AccountInfo = () => {
                         </div>
                     </div>
                     <div className={"row mb-3"}>
-                        <label htmlFor={"firstnameInput"} className={"col-2 col-form-label"}>Firstname:</label>
-                        <div className={"col-9"}>
+                        <label htmlFor={"firstnameInput"}
+                               className={"col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-3 form-label"}>
+                            First name:
+                        </label>
+                        <div className={"col-xxl-9 col-xl9 col-lg-9 col-md-9 col-8"}>
                             <input className={"form-control"}
                                    id={"firstnameInput"}
                                    placeholder={"First Name"}
@@ -48,8 +57,11 @@ const AccountInfo = () => {
                         </div>
                     </div>
                     <div className={"row mb-3"}>
-                        <label htmlFor={"lastnameInput"} className={"col-2 col-form-label"}>Last Name:</label>
-                        <div className={"col-9"}>
+                        <label htmlFor={"lastnameInput"}
+                               className={"col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-3 form-label"}>
+                            Last Name:
+                        </label>
+                        <div className={"col-xxl-9 col-xl9 col-lg-9 col-md-9 col-8"}>
                             <input className={"form-control"}
                                    id={"lastnameInput"}
                                    placeholder={"Last Name"}

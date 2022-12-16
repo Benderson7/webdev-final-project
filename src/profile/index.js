@@ -21,16 +21,22 @@ const Profile = () => {
         <>
             {
                 currentUser._id !== undefined &&
-                <>
-                    <h2 class="text-white">{currentUser.username}</h2>
-                    <button class="btn btn-danger" onClick={handleLogoutBtn}>Logout</button>
-                    <br/>
+                <div className={"container wd-bg-white pt-3"}>
+                    <div className={"row container"}>
+                        <div className={"col-10 border-bottom border-2"}>
+                            <h2 className="text-black">{currentUser.username}</h2>
+                        </div>
+                        <div className={"col-2 border-bottom border-2"}>
+                            <button className="btn btn-danger float-end" onClick={handleLogoutBtn}>Logout</button>
+                        </div>
+                    </div>
                     <AccountInfo/>
                     <Team uid={currentUser._id}/>
                     <UserComments uid={currentUser._id}/>
                     <LikedTeams uid={currentUser._id}/>
                     <DislikedTeams uid={currentUser._id}/>
-                </>
+                    <br/>
+                </div>
             }
         </>
     )

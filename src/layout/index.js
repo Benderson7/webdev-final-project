@@ -22,7 +22,8 @@ function Layout({active = 'home'}) {
                 <div className={`list-group-item ${currentNav === 'search'?'active':''}`}>
                     <Link to="/pokemon">Search</Link>
                 </div>
-                <div className={`list-group-item ${(currentNav === 'login' || currentNav === 'register')?'active':''}`}>
+                <div className={`list-group-item ${(parts.includes("login") || parts.includes("register") || 
+                parts.includes("profile")) ?'active':''}`}>
                     <Link to={`/${currentUser ? "profile" : "login"}`}>{`${currentUser ? "Profile" : "Login/Register"}`}</Link>
                 </div>
             </div>

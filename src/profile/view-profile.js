@@ -23,13 +23,13 @@ const ViewProfile = () => {
     }
 
     return(
-        <>
+        <div className={"container wd-bg-white"}>
             <ProfileInfo uid={uid}/>
             {team && <Team uid={uid}/>}
             <UserComments uid={uid}/>
             <LikedTeams uid={uid}/>
             <DislikedTeams uid={uid}/>
-           </>
+           </div>
     )
 }
 

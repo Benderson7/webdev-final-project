@@ -10,7 +10,7 @@ const LikedTeams = ({uid}) => {
     useEffect(() => {dispatch(getUserLikedTeamsThunk(uid))}, [uid, liked, disliked])
 
     return (
-        <div className={"container wd-bg-white mt-3"}>
+        <div className={"container wd-bg-white mb-3"}>
             <h2>Liked Teams</h2>
             <ul className={"list-group"}>
                 {likedTeams.map((team) =>

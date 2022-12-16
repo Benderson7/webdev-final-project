@@ -5,24 +5,25 @@ import {Link} from "react-router-dom";
 import "./index.css"
 
 const UserComments = ({uid}) => {
-    const {comments, currentUser} = useSelector((state) => state.users)
+    const {comments} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     useEffect(() => {dispatch(getCommentsByUserThunk(uid))}, [uid])
 
     return (
-        <div className={"container wd-bg-white mt-3"}>
+        <div className={"container wd-bg-white mb-3"}>
             <h2>User's comments</h2>
             <ul className={"list-group"}>
                 {comments.map((comment) =>
                     <li className={"list-group-item"}>
-
-                        <span class="text-muted"> On </span> <Link to={`/profile/${comment.team.user._id}`}><span class="text-muted"> {comment.team.user.username}'s team </span>
-
+                        On&nbsp;
+                        <Link to={`/profile/${comment.team.user._id}`} className={"text-primary"}>
+                            {comment.team.user.username}
+                        </Link>
+                        's team
                         <br/>
-                        {comment.comment} </Link>
+                        {comment.comment}
                     </li>)}
             </ul>
-            <br/>
         </div>
     )
 }

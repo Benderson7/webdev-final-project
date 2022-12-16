@@ -8,8 +8,8 @@ const ProfileInfo = ({uid}) => {
     useEffect(() => {dispatch(getProfileThunk(uid))}, [uid])
 
     return (
-        <>
-            <h3 class="text-white">{profile.username}</h3>
+        <div className={"container pt-3"}>
+            <h3 class="text-black border-bottom border-2">{profile.username}</h3>
             {currentUser._id === profile._id &&
                 <>
                     <div>First Name: {profile.firstName ? profile.firstName : "Not set"}</div>
@@ -17,7 +17,7 @@ const ProfileInfo = ({uid}) => {
                     <div>Email: {profile.email ? profile.email : "Not set"}</div>
                 </>
             }
-        </>
+        </div>
     )
 }
 

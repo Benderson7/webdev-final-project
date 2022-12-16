@@ -12,7 +12,9 @@ const Comment = ({comment}) => {
     return (
         <div className={"row"}>
             <div className={"col"}>
-                <Link to={`/profile/${comment.user._id}`}>{comment.user.username}</Link>
+                <Link to={`/profile/${comment.user._id}`} className={"text-primary"}>
+                    {comment.user.username}
+                </Link>
                 <br/>
                 {comment.comment}
             </div>

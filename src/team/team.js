@@ -28,7 +28,7 @@ const Team = ({uid}) => {
 
 
     return (
-        <div className={"wd-bg-white container"}>
+        <div className={"wd-bg-white container mb-3"}>
             <h3>Team:</h3>
             <div className={"row"}>
                 {team && team.pokemons.map(
@@ -38,7 +38,11 @@ const Team = ({uid}) => {
                                 <div className={"text-center"}>
                                     <img width={100} src={pokemon.sprite}/>
                                     <br/>
-                                    <Link to={`/details/${pokemon.id}`}>{pokemon.name}</Link>
+                                    <Link to={`/details/${pokemon.id}`}>
+                                        <u>
+                                            {pokemon.name[0].toUpperCase() + pokemon.name.substring(1)}
+                                        </u>
+                                    </Link>
                                     <br/>
                                     {currentUser._id === uid ?
                                         <button onClick={() => handleRemoveBtn(pokemon.id)} className={"btn btn-danger"}>
@@ -70,7 +74,6 @@ const Team = ({uid}) => {
                     </button>
                 </div>
             </div>
-            <br/>
         </div>
     )
 }
