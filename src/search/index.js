@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getPokemonThunk, searchMonThunk} from "../services/pokemon-thunks";
@@ -8,10 +8,12 @@ import capitalize from "../util";
 function Search() {
     const {pokemon, loading} = useSelector(state => state.pokemon);
     const dispatch = useDispatch();
-    useEffect(() => {dispatch(getPokemonThunk())}, [])
+    useEffect(() => {dispatch(getPokemonThunk())}, []);
+    const navigate = useNavigate();
     const searchHandler = async () => {
         const query = document.getElementById("search-input").value;
-        dispatch(getPokemonThunk(query));
+        await dispatch(getPokemonThunk(query));
+        navigate(`/search/${query}`);
     }
     return (
         <div className="justify-content-center">
