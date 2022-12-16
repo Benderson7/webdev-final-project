@@ -16,25 +16,27 @@ const Login = () => {
     }
 
     return(
-        <div>
-            <div className={"row"}>
-                <h3>Welcome, please login!</h3>
+        <div className={"wd-bg-white container pt-2 pb-1"}>
+            <div className={"row text-center"}>
+                <h3>Login</h3>
             </div>
             <div className={"input-group mb-3"}>
-                <span className={"input-group-addon"}>
-                    <i className={"form-control bi bi-person rounded-0"}></i>
-                </span>
+                <label className={"input-group-addon"} htmlFor={"username"}>
+                    <i className={"form-control bi bi-person rounded-0"} htmlFor={"username"}></i>
+                </label>
                 <input
+                    id={"username"}
                     onChange={(e) => setUsername(e.target.value)}
                     className="form-control"
                     placeholder="username"
                     value={username}/>
             </div>
             <div className={"input-group mb-3"}>
-                <span className={"input-group-addon"}>
+                <label className={"input-group-addon"} htmlFor={"password"}>
                     <i className={"form-control bi bi-lock rounded-0"}></i>
-                </span>
+                </label>
                 <input
+                    id={"password"}
                     type={"password"}
                     onChange={(e) => setPassword(e.target.value)}
                     className="form-control"
@@ -42,13 +44,15 @@ const Login = () => {
                     value={password}
                 />
             </div>
-            <div className={"row mb-3"}>
-                <button className="btn btn-success btn-block rounded-pill"
-                        onClick={handleLoginBtn}>Login</button>
-            </div>
-            <div className={"row"}>
-                <Link to="/register" className="btn btn-primary btn-block rounded-pill">
-                    Don't have an account? Click here to register.
+            <button
+                className="btn btn-primary w-100 mb-3 mt-3"
+                onClick={handleLoginBtn}>
+                Login
+            </button>
+            <div className={"text-center mt-3"}>
+                Don't have an account?&nbsp;
+                <Link to="/register">
+                    <u>Click here to register</u>
                 </Link>
             </div>
         </div>

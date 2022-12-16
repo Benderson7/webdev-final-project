@@ -2,6 +2,10 @@
     background-color: white;
 }
 
-a {
-    color: lightskyblue;
+.wd-text-small {
+    font-size: 15px;
+}
+
+.wd-shift-up {
+    bottom: 16px;
 }

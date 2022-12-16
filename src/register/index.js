@@ -14,39 +14,50 @@ const Register = () => {
     }
 
     return(
-        <div className={"container wd-bg-white"}>
-            <h3 className={"text-center"}>Register</h3>
+        <div className={"container wd-bg-white pt-1 pb-1"}>
+            <h3 className={"text-center pb-1 pb-1"}>Register</h3>
             <div className={"input-group mb-3"}>
-                <span className={"input-group-addon"}>
+                <label className={"input-group-addon"} htmlFor={"username"}>
                     <i className={"form-control bi bi-person rounded-0"}></i>
-                </span>
+                </label>
                 <input
+                    id={"username"}
                     onChange={(e) => setUsername(e.target.value)}
                     className="form-control"
                     placeholder="username"
                     value={username}/>
             </div>
             <div className={"input-group mb-3"}>
-                <span className={"input-group-addon"}>
+                <label className={"input-group-addon"} htmlFor={"password"}>
                     <i className={"form-control bi bi-lock rounded-0"}></i>
-                </span>
+                </label>
                 <input type={"password"}
+                       id={"password"}
                        onChange={(e) => setPassword(e.target.value)}
                        className="form-control"
                        placeholder="password"
                        value={password}/>
             </div>
-            <input type={"checkbox"} className={"mb-3"}
-                   onClick={(e) => {e.target.checked? setRole("ADMIN"): setRole("USER")}}
-            /> Admin Account?
+            <div className={"pb-1 position-relative"}>
+                <input type={"checkbox"} className={"mb-3 me-1"} id={"role"}
+                       onClick={(e) => {e.target.checked? setRole("ADMIN"): setRole("USER")}}
+                />
+                <label className={"wd-text-small wd-shift-up position-absolute"} htmlFor={"role"}>
+                    Admin Account?
+                </label>
+            </div>
             <button
                 className="btn btn-primary w-100 mb-3"
                 onClick={handleRegisterBtn}>
                 Register Now
             </button>
-            <div className={"text-center"}>
-                Already have an account?
-                <Link to="/login"> Login</Link>
+            <div className={"text-center mt-3"}>
+                Already have an account?&nbsp;
+                <Link to="/login">
+                    <u>
+                        Login
+                    </u>
+                </Link>
             </div>
         </div>
     )
