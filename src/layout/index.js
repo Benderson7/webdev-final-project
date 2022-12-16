@@ -1,19 +1,29 @@
-import {Link, Outlet} from "react-router-dom";
+import {Link, Outlet, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 
-function Layout() {
+function Layout({active = 'home'}) {
+
+    const location = useLocation();
+    const {pathname} = location;
+    const parts = pathname.split('/')
+    const pathLength = parts.length
+    let currentNav = parts[pathLength - 1]
+    if (currentNav === "") {
+        currentNav = "home"
+    }
+
     const {currentUser} = useSelector((state) => state.users)
     return (
         <div className="mb-4">
             <div className="list-group list-group-horizontal">
-                <div className="list-group-item">
+                <div className={`list-group-item ${currentNav === 'home'?'active':''}`}>
                     <Link to="/">Home</Link>
                 </div>
-                <div className="list-group-item">
+                <div className={`list-group-item ${currentNav === 'search'?'active':''}`}>
                     <Link to="/pokemon">Search</Link>
                 </div>
-                <div className="list-group-item">
-                    <Link to={`/${currentUser ? "profile" : "login"}`}>{`${currentUser ? "Profile" : "Log In / Register"}`}</Link>
+                <div className={`list-group-item ${(currentNav === 'login' || currentNav === 'register')?'active':''}`}>
+                    <Link to={`/${currentUser ? "profile" : "login"}`}>{`${currentUser ? "Profile" : "Login/Register"}`}</Link>
                 </div>
             </div>
             <div className="container">

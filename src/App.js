@@ -34,6 +34,7 @@ function App() {
                       <Layout/>
                       <Routes>
                           <Route index element={<Home/>}/>
+                          <Route path={"/home"} element={<Home/>}/>
                           <Route path="/login" element={<LoggedInRoute><Login/></LoggedInRoute>}/>
                           <Route path="/register" element={<LoggedInRoute><Register/></LoggedInRoute>}/>
                           <Route path="/pokemon" element={<Search/>}/>
