@@ -58,7 +58,6 @@ const usersReducer = createSlice({
             state.comments = action.payload
         },
         [getRecentCommentsThunk.fulfilled]: (state, action) => {
-            console.log(action.payload)
             state.recentComments = action.payload
         },
         [getRecentCommentsByUserThunk.fulfilled]: (state, action) => {
@@ -78,10 +77,9 @@ const usersReducer = createSlice({
             state.allUsers = state.allUsers.filter(user => user._id !== action.payload)
         },
         [deleteCommentOnTeamThunk.fulfilled]: (state, action) => {
-            state.recentCommentsByUser = state.comments.filter(comment => comment._id !== action.payload)
+            state.recentCommentsByUser = state.recentCommentsByUser.filter(comment => comment._id !== action.payload)
         },
         [getRecentTeamsThunk.fulfilled]: (state, action) => {
-            console.log(action.payload)
             state.recentTeams = action.payload
         }
     }

@@ -32,14 +32,16 @@ function Home() {
     else {
         // Popular Teams
         return (
-            <div className={"wd-bg-white container"}>
+            <div className={"wd-bg-white container pb-3"}>
                 <h3>Recent Teams</h3>
                 {recentTeams.map(team => {
                     return (
                         <div className={"container"}>
                             <div className={"row"}>
                                 <h5>
-                                    <Link to={`/profile/${team.user._id}`}>{team.user.username}</Link>'s Team
+                                    <Link to={`/profile/${team.user._id}`} className={"text-primary"}>
+                                        {team.user.username}
+                                    </Link>'s Team
                                 </h5>
                             </div>
                             <div className={"row"}>
@@ -50,7 +52,9 @@ function Home() {
                                                 <div className={"text-center"}>
                                                     <img width={100} src={pokemon.sprite}/>
                                                     <br/>
-                                                    <Link to={`/details/${pokemon.id}`}>{pokemon.name}</Link>
+                                                    <Link to={`/details/${pokemon.id}`}>
+                                                        <u>{pokemon.name[0].toUpperCase() + pokemon.name.substring(1)}</u>
+                                                    </Link>
                                                     <br/>
                                                 </div>
                                             </div>
@@ -61,42 +65,59 @@ function Home() {
                     </div>
                     )
                 })}
-                <h3>Your Recent Comments</h3>
-                <ul className={"list-group"}>
-                    {recentCommentsByUser.map((comment) =>
-                        <li className={"list-group-item"}>
-                            <div className={"row"}>
-                                <div className={"col"}>
-                                    {comment.comment}
-                                </div>
-                                <div className={"col"}>
-                                    <Link to={`profile/${comment.team.user._id}`}>
-                                        On {comment.team.user.username}'s Team
-                                    </Link>
-                                </div>
-                                <div className={"col-2"}>
-                                    <button className={"btn btn-danger"}
-                                            onClick={() => dispatch(() => handleDeleteBtn(comment._id))}>
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                    )}
-                </ul>
-                <br/>
+                {currentUser._id !== undefined &&
+                    <>
+                        <h3>Your Recent Comments</h3>
+                        <ul className={"list-group mb-2"}>
+                            {recentCommentsByUser.map((comment) =>
+                                <li className={"list-group-item"}>
+                                    <div className={"row"}>
+                                        <div className={"col"}>
+                                            On&nbsp;
+                                            <Link to={`profile/${comment.team.user._id}`}
+                                                  className={"text-primary"}>
+                                                {comment.team.user.username}
+                                            </Link>
+                                            's Team
+                                            <div>
+                                                {comment.comment}
+                                            </div>
+                                        </div>
+                                        <div className={"col-3"}>
+                                            <button className={"btn btn-danger float-end"}
+                                                    onClick={() => dispatch(() => handleDeleteBtn(comment._id))}>
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            )}
+                        </ul>
+                    </>
+                }
                 <h3>Other User's Recent Comments</h3>
                 <ul className={"list-group"}>
                     {recentComments.map((comment) =>
                         <li className={"list-group-item"}>
                             <div className={"row"}>
                                 <div className={"col"}>
-                                    {comment.comment}
+                                    <div className={"row text-primary"}>
+                                        <Link to={`/profile/${comment.user._id}`}>
+                                            {comment.user.username}
+                                        </Link>
+                                    </div>
+                                    <div className={"row"}>
+                                        <div>
+                                            {comment.comment}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className={"col"}>
-                                    <Link to={`profile/${comment.team.user._id}`}>
-                                        On {comment.team.user.username}'s Team
+                                    On&nbsp;
+                                    <Link to={`profile/${comment.team.user._id}`} className={"text-primary"}>
+                                        {comment.team.user.username}
                                     </Link>
+                                    's Team
                                 </div>
                             </div>
                         </li>
